@@ -59,8 +59,11 @@ ROOT_URLCONF = 'Holistic_Insight.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+
+        # Django知道应该从哪里找到index.html
         'DIRS': [os.path.join(BASE_DIR, 'frontend/dist')]
         ,
+
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
