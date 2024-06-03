@@ -1,0 +1,10 @@
+{
+  "start_url": "/",
+  "description": "Holistic Insight",
+  "id": "/index.html",
+  "name": "Holistic Insight",
+  "short_name": "Holistic Insight",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff"
+}
