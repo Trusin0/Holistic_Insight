@@ -70,3 +70,5 @@ python manage.py runserver 8000
 会导致代码的可读性变差，且整个文件非常的笨重，所以建议你将组件分离到不同的文件中，参照index下的架构。
 
 好了，你可以开始干活了。
+
+![img.png](img.png)
