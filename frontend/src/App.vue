@@ -1,23 +1,34 @@
+
+<!-- 这个文件是Vue.js应用程序的起点，它为整个应用程序提供了一个基本的布局和样式框架。
+     在App.vue中通常添加全局的样式和逻辑，以及配置应用程序的路由等。-->
+
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <top-bar></top-bar>
+    <div class="main-content">
+      <router-view/>
+    </div>
+    <footer-bar></footer-bar>
   </div>
 </template>
 
 <script>
+
+import TopBar from '@/components/TopBar.vue'
+import FooterBar from '@/components/FooterBar.vue'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    TopBar,
+    FooterBar
+  }
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style scoped>
+.main-content {
+  padding-top: 80px;   /* 给top-bar预留空间 */
+  padding-bottom: 80px; /* 给footer-bar预留空间 */
 }
 </style>
