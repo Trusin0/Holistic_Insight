@@ -5,6 +5,6 @@
 ## Build Setup
 
 ``` bash
-# build for production with minification
+# build for production with minificat ion
 npm run build
 ```

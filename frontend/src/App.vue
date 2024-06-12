@@ -5,7 +5,9 @@
 <template>
   <div id="app">
     <top-bar></top-bar>
-    <router-view/>
+    <div class="main-content">
+      <router-view/>
+    </div>
     <footer-bar></footer-bar>
   </div>
 </template>
@@ -24,13 +26,9 @@ export default {
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style scoped>
+.main-content {
+  padding-top: 80px;   /* 给top-bar预留空间 */
+  padding-bottom: 80px; /* 给footer-bar预留空间 */
 }
 </style>
