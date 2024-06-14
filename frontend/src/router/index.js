@@ -15,6 +15,10 @@ export default new Router({
     {
       path: '/Index',
       component: Index
+    },
+    {
+      path: '/reaction-time',
+      component: () => import(`@/views/reactionTime/Index.vue`)
     }
   ]
 })
