@@ -1,14 +1,13 @@
 <template>
   <div>
     <!-- 初始界面 -->
-    <div v-if="gameStarted === false" class="initial-screen">
-      <p>{{ message }}</p>
-      <p>{{ gameStarted }}</p>
+    <div v-if="stage === 0" class="initial-screen">
+      舒尔特测试
       <button @click="startGame">GO</button>
     </div>
 
     <!-- 游戏界面 -->
-    <div v-if="gameStarted === true" class="game-screen">
+    <div v-if="stage === 1" class="game-screen">
       <div class="grid-container">
         <div v-for="(row, rowIndex) in grid" :key="rowIndex">
           <div
@@ -25,7 +24,7 @@
     </div>
 
     <!-- 游戏结束界面 -->
-    <div v-if="gameOver">
+    <div v-if="stage === 2" class="game-over-screen">
       你用时: {{ timeElapsed }}秒
       <button @click="resetGame">再来一次</button>
     </div>
@@ -37,11 +36,9 @@ export default {
   data() {
     console.log("Game started") // 确认这个方法是否被调用
     return {
-      message: '舒尔特测试',
       size: 4, // 网格大小
       grid: [], // 网格
-      gameStarted: false, // 游戏是否开始
-      gameOver: false, // 游戏是否结束
+      stage: 0, // 当前阶段
       correctOrder: [], // 正确的顺序
       correctCount: 0, // 正确的数量
       timeStart: 0, // 游戏开始时间
@@ -83,7 +80,7 @@ export default {
       }
 
       this.correctCount = 0
-      this.gameStarted = true
+      this.stage = 1
       console.log("Game started, gameStarted:", this.gameStarted) // 检查 gameStarted 状态
       this.timeStart = Date.now()
     },
@@ -96,16 +93,15 @@ export default {
 
         // 完成所有点击，游戏结束
         if (this.correctCount === this.correctOrder.length) {
-          this.gameOver = true
-          this.gameStarted = false;
+          this.timeElapsed = (Date.now() - this.timeStart) / 1000
+          this.stage = 2
         }
-      } else {
+      } else if (cell.number > this.correctCount + 1){
         cell.color = 'gray' // 将cell颜色置为灰色
       }
     },
     resetGame () {
-      this.gameStarted = false
-      this.gameOver = false
+      this.stage = 0
     },
   },
 };
@@ -121,23 +117,23 @@ export default {
   width: 100%;
   height: 100vh; /* 使初始屏幕填满视窗的高度 */
   background-color: #A7D2FCFC; /* 一个明亮的背景颜色 */
-  color: #333333; /* 文本颜色 */
   text-align: center;
   padding: 20px; /* 添加一些内边距 */
+  font-size: 70px; /* 增大字体大小，更易阅读 */
+  color: rgba(241, 243, 245, 0.99); /* 白色文字 */
+  margin-bottom: 80px; /* 添加下边距 */
+  font-weight: bold; /* 字体加粗 */
 }
 
-.initial-screen p {
-  font-size: 24px; /* 增大字体大小，更易阅读 */
-  margin-bottom: 20px; /* 添加下边距 */
-}
 
 .initial-screen button {
-  padding: 10px 20px;
-  font-size: 16px; /* 适中的按钮文本大小 */
+  padding: 10px 15px; /* 按钮内边距 */
+  font-weight: bold; /* 字体加粗 */
+  font-size: 40px; /* 适中的按钮文本大小 */
   color: rgba(241, 243, 245, 0.99); /* 白色文字 */
   background-color: #3FB1FFFC; /* 按钮背景颜色 */
   border: none;
-  border-radius: 5px; /* 圆角边框 */
+  border-radius: 10px; /* 圆角边框 */
   cursor: pointer; /* 显示手型光标表示可点击 */
   transition: background-color 0.2s; /* 过渡效果让按钮的变化更平滑 */
 }
@@ -154,7 +150,7 @@ export default {
   align-items: center;
   width: 100%;
   height: 100vh; /* 使初始屏幕填满视窗的高度 */
-  background-color: #BEDDFFFC; /* 一个明亮的背景颜色 */
+  background-color: #A7D2FCFC; /* 一个明亮的背景颜色 */
   color: #333333; /* 文本颜色 */
   text-align: center;
   padding: 20px; /* 添加一些内边距 */
@@ -164,11 +160,16 @@ export default {
 .grid-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* 根据网格的列数调整 */
-  gap: 5px; /* 网格之间的间隙 */
+  grid-template-rows: repeat(4, 1fr); /* 创建4行，确保是4x4的网格 */
+  column-gap: 5px; /* 网格之间的间隙 */
+  row-gap: 10px; /* 网格之间的间隙 */
   padding: 10px; /* 容器的内边距 */
   margin: auto; /* 居中显示 */
-  width: 60%; /* 容器宽度，根据实际需要调整 */
+  aspect-ratio: 1 / 1; /* 保持容器为正方形 */
+  width: 100%; /* 容器宽度，根据实际需要调整 */
+  height: 100%; /* 容器长度，根据实际需要调整 */
   max-width: 600px; /* 最大宽度限制 */
+  max-height: 540px; /* 最大长度限制 */
   background: #e0e0e0; /* 轻灰色背景，可以根据主题调整 */
   border-radius: 8px; /* 圆角边框 */
   box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* 轻微的阴影效果提升层次感 */
@@ -179,12 +180,15 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  aspect-ratio: 1 / 1; /* 保持单元格为正方形 */
-  height: 80px; /* 单元格高度 */
-  font-size: 24px; /* 数字的字体大小 */
+
+  width: 100%; /* 充满容器列宽 */
+  height: 70%; /* 充满容器行高 */
+  font-size: 36px; /* 数字的字体大小 */
   font-weight: bold; /* 字体加粗 */
   color: #333; /* 字体颜色，提高可读性 */
   cursor: pointer; /* 表明这是一个可点击的元素 */
+  //aspect-ratio: 1 / 1; /* 保持单元格为正方形 */
+  border-radius: 8px; /* 圆角边框 */
   transition: background-color 0.3s, transform 0.2s; /* 平滑的背景色变化和轻微放大效果 */
 }
 
@@ -205,6 +209,37 @@ export default {
   transform: scale(0.9); /* 点击时轻微缩小，增加交互感 */
 }
 
+.game-over-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh; /* 使初始屏幕填满视窗的高度 */
+  background-color: #A7D2FCFC; /* 一个明亮的背景颜色 */
+  text-align: center;
+  padding: 20px; /* 添加一些内边距 */
+  font-size: 50px; /* 增大字体大小，更易阅读 */
+  color: rgba(241, 243, 245, 0.99); /* 白色文字 */
+  margin-bottom: 80px; /* 添加下边距 */
+  font-weight: bold; /* 字体加粗 */
+}
+
+.game-over-screen button {
+  padding: 10px 20px; /* 按钮内边距 */
+  font-size: 40px; /* 适中的按钮文本大小 */
+  font-weight: bold; /* 字体加粗 */
+  color: rgba(241, 243, 245, 0.99); /* 白色文字 */
+  background-color: #3FB1FFFC; /* 按钮背景颜色 */
+  border: none;
+  border-radius: 10px; /* 圆角边框 */
+  cursor: pointer; /* 显示手型光标表示可点击 */
+  transition: background-color 0.2s; /* 过渡效果让按钮的变化更平滑 */
+}
+
+.game-over-screen button:hover {
+  background-color: #3580E7FF; /* 鼠标悬停时按钮颜色加深 */
+}
 
 
 .button:hover {
