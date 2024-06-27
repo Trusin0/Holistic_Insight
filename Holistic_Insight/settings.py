@@ -140,3 +140,7 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# set github oauth client id and client secret
+GITHUB_CLIENT_ID = 'Ov23liTtz5bKoWG9hvXx'
+GITHUB_CLIENT_SECRET = '94e7c8190be3cf7f4ac5ed06f0504b935398fe9a'
