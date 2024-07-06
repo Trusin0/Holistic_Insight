@@ -5,8 +5,10 @@
         <span :class="{ active: $route.path === '/HelloWorld' }" @click="$router.push('/HelloWorld')">Holistic Insight</span>
         <span :class="{ active: $route.path === '/Tendency' }" @click="$router.push('/Tendency')">趋势</span>
       </div>
-      <div v-if="!$store.state.userInfo.username">
-        <span @click="logOut">退出登录</span>
+      <div v-if="$store.state.userInfo.username">
+        <div class="top-bar-item">
+          <span @click="logOut">退出登录</span>
+        </div>
       </div>
       <div v-else>
         <div class="top-bar-item">

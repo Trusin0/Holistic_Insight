@@ -7,6 +7,7 @@ import ElementUI from 'element-ui'
 import VueResource from 'vue-resource'
 import VueCookie from 'vue-cookie'
 import 'element-ui/lib/theme-chalk/index.css'
+import store from './store'
 
 Vue.use(ElementUI)
 Vue.use(VueResource)
@@ -19,5 +20,6 @@ new Vue({
   el: '#app',
   router,
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
+  store
 })
