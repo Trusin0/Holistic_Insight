@@ -11,29 +11,57 @@ from django.utils import timezone
 
 # test:hello world
 def hello(request):
-    response = JsonResponse({'message': 'Hello, World!'})
+    cookie = request.COOKIES.get('session_key')
+    response = JsonResponse({'cookie': cookie})
     return response
 
-def login(request):
-    oauth_url = settings.GITHUB_OAUTH_URL
-    client_id = settings.GITHUB_CLIENT_ID
-    redirect_uri = settings.GITHUB_REDIRECT_URI
-    return redirect(f'{oauth_url}?client_id={client_id}&redirect_uri={redirect_uri}')
+
+# def check_session(request):
+#     cookie = request.COOKIES.get('session_key')
+#     response = JsonResponse({'cookie': cookie})
+#     return response
+
+def login(request): 
+    oauth_url = settings.GITHUB_OAUTH_URL 
+    client_id = settings.GITHUB_CLIENT_ID 
+    redirect_uri = settings.GITHUB_REDIRECT_URI 
+    return JsonResponse({'redirect_url': f'{oauth_url}?client_id={client_id}&redirect_uri={redirect_uri}'})
 
 def logout(request):
     pass
 
 def check_session(request):
-    session_key = request.GET.get('session_key')
+    session_key = request.COOKIES.get('session_key')
+    print(session_key)
     try:
         session = models.Session.objects.get(session_key=session_key)
+        usr = session.usr
+        return JsonResponse({'usr_name': usr.usr_name})
     except models.Session.DoesNotExist:
         return JsonResponse({'error': 'Session not found'}, status=404)
     except models.Session.MultipleObjectsReturned:
         return JsonResponse({'error': 'Multiple sessions with the same key'}, status=500)
     
 
+def get_login_status(request):
+    session_key = request.COOKIES.get('session_key')
+    login_status = {'is_login': False,
+                    'session_status': 'invalid',
+                    'usr_name': None,
+                    'usr_id': None,}
+    
+    if session_key:
+        try:
+            session = models.Session.objects.get(session_key=session_key)
+            if session.expire_time > timezone.now():
+                login_status['is_login'] = True
+                login_status['session_status'] = 'valid'
+                login_status['usr_name'] = session.usr.usr_name
+                login_status['usr_id'] = session.usr.usr_id
+        except Exception as e:
+            login_status['error'] = str(e)
 
+    return JsonResponse(login_status)
 
 
 def save_game_data(request):
@@ -149,12 +177,8 @@ def oauth(request):
     
     # create session
     session_key = user.create_session()
-    response = JsonResponse({'message': 'Login successful',
-                             'username': username,
-                             'id': user.usr_id,
-                             'respCode': '000000',
-                             'session_key': session_key})
+    response = redirect('/#/index')
     # set cookie in response
-    # response.set_cookie('session_key', session_key)
+    response.set_cookie('session_key', session_key,max_age=604800)
     
     return response
