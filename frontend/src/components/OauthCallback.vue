@@ -1,45 +1,32 @@
-<template>
-  <div>
-    Redirecting...
-  </div>
-</template>
-
 <script>
+
 export default {
-  created () {
-    const query = new URLSearchParams(window.location.search)
-    const message = query.get('message')
-    const username = query.get('username')
-    const id = query.get('id')
-    const respCode = query.get('respCode')
-    // eslint-disable-next-line camelcase
-    const session_key = query.get('session_key')
+  methods: {
+    async handleOAuthCallback () {
+      const params = new URLSearchParams(window.location.search)
+      const code = params.get('code')
 
-    // Store the data in localStorage or sessionStorage
-    localStorage.setItem('oauth_data', JSON.stringify({
-      message,
-      username,
-      id,
-      respCode,
-      session_key
-    }))
+      if (code) {
+        try {
+          const response = await this.$http.get(`http://127.0.0.1:8000/api/oauth?code=${code}`)
 
-    // Communicate with the opener window
-    if (window.opener) {
-      window.opener.postMessage({
-        type: 'OAUTH_CALLBACK',
-        data: {
-          message,
-          username,
-          id,
-          respCode,
-          session_key
+          if (response.data.respCode === '000000') {
+            window.localStorage.setItem('holistic-insight-token', response.data.token)
+            this.$store.state.userInfo = response.data
+            // Optionally redirect to another page or indicate success
+            this.$router.push({ name: 'index' })
+          } else {
+            console.error('OAuth failed:', response.data.message)
+          }
+        } catch (error) {
+          console.error('Error during OAuth callback:', error)
         }
-      }, '*')
+      }
     }
-
-    // Close the current window
-    window.close()
+  },
+  created () {
+    this.handleOAuthCallback()
   }
 }
+
 </script>

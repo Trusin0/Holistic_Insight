@@ -77,7 +77,7 @@ export default {
       this.updateLoginStatus()
     },
     logIn () {
-      this.$http.get('http://127.0.0.1:8000/api/login')
+      this.$http.get('http://127.0.0.1:8000/api/auth/login')
         .then((response) => {
           window.open(response.data.redirect_url, '_blank')
           // window.location.href = response.data.redirect_url
@@ -85,19 +85,6 @@ export default {
         .catch((error) => {
           console.error('Error during login:', error)
         })
-    },
-    handleOAuthCallback (event) {
-      if (event.data.type === 'OAUTH_CALLBACK') {
-        const data = event.data.data
-        console.log('OAuth callback data:', data)
-        // Handle the received data, e.g., store in Vuex, update UI, etc.
-      }
-    },
-    created () {
-      window.addEventListener('message', this.handleOAuthCallback)
-    },
-    beforeDestroy () {
-      window.removeEventListener('message', this.handleOAuthCallback)
     }
   }
 }

@@ -14,6 +14,7 @@ export default new Router({
     },
     {
       path: '/Index',
+      name: 'index',
       component: Index
     },
     {
@@ -23,6 +24,11 @@ export default new Router({
     {
       path: '/shuerte-grip',
       component: () => import(`@/views/shuerteGrip/Index.vue`)
+    },
+    {
+      path: '/oauth/callback',
+      name: 'oauthCallback',
+      component: () => import('@/components/OAuthCallback.vue')
     }
   ]
 })
