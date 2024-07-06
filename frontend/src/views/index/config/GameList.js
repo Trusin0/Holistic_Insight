@@ -23,9 +23,9 @@ export const gameList = [
   },
   {
     id: 4,
-    title: '测试用',
-    intro: '测试用',
-    path: '/test'
+    title: '图形记忆',
+    intro: '测试您的图形方格记忆能力',
+    path: '/figure-memory'
   },
   {
     id: 5,

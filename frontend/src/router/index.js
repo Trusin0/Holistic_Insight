@@ -27,6 +27,10 @@ export default new Router({
     {
       path: '/number-memory',
       component: () => import(`@/views/numberMemory/Index.vue`)
+    },
+    {
+      path: '/figure-memory',
+      component: () => import(`@/views/figureMemory/Index.vue`)
     }
   ]
 })
