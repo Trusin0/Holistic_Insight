@@ -5,13 +5,16 @@
         <span :class="{ active: $route.path === '/HelloWorld' }" @click="$router.push('/HelloWorld')">Holistic Insight</span>
         <span :class="{ active: $route.path === '/Tendency' }" @click="$router.push('/Tendency')">趋势</span>
       </div>
-      <div v-if="isLoggedIn">
-        <span @click="logOut">退出登录</span>
+      <div v-if="$store.state.userInfo.username">
+        <div class="top-bar-item">
+          <span :class="{ active: $route.path === '/LogOut' }" @click="logOut">退出登录</span>
+        </div>
       </div>
       <div v-else>
         <div class="top-bar-item">
           <span :class="{ active: $route.path === '/Register' }" @click="$router.push('/Register')">注册</span>
-          <span :class="{ active: $route.path === '/Login' }" @click="$router.push('/Login')">登录</span>
+          <span :class="{ active: $route.path === '/Login' }" @click="logIn">登录</span>
+          <span :class="{ active: $route.path === '/CheckLoginStatus' }" @click="checkLoginStatus">验证登录状态</span>
         </div>
       </div>
     </div>
@@ -68,6 +71,37 @@ export default {
   methods: {
     logOut () {
       this.$message.success('已退出登录')
+      for (let i in this.$store.state.userInfo) {
+        this.$store.state.userInfo[i] = ''
+      }
+      window.localStorage.removeItem('human-benchmark-token')
+      this.updateLoginStatus()
+    },
+    logIn () {
+      this.$http.get('http://localhost:8000/api/auth/login')
+        .then((response) => {
+          window.open(response.data.redirect_url, '_blank')
+          // 开启一个新页面来进行验证
+        })
+        .catch((error) => {
+          console.error('Error during login:', error)
+        })
+    },
+    async checkLoginStatus () {
+      try {
+        const response = await this.$http.get('http://localhost:8000/api/auth/login_status')
+        if (response.data.is_login === true) {
+          this.$store.state.userInfo.id = response.data.usr_id
+          this.$store.state.userInfo.username = response.data.usr_name
+        } else {
+          console.error('OAuth failed:', response.data.message)
+        }
+      } catch (error) {
+        console.error('Error checking login status:', error)
+      }
+    },
+    mounted () {
+      this.checkLoginStatus()
     }
   }
 }
