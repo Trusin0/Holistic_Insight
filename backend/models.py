@@ -8,7 +8,10 @@
 from django.db import models
 import secrets 
 import datetime
+import pytz
 from django.db import IntegrityError
+
+tz = pytz.timezone('Asia/Shanghai')  # 东八区
 
 
 class Aim(models.Model):
@@ -152,8 +155,8 @@ class Usr(models.Model):
     def create_session(self):
         session = Session(usr=self)
         # 存在时区问题，后面再看看
-        session.create_time = datetime.datetime.now()
-        session.expire_time = datetime.datetime.now() + datetime.timedelta(days=1)
+        session.create_time = datetime.datetime.now(tz)
+        session.expire_time = session.create_time + datetime.timedelta(days=1)
         session.session_key = secrets.token_hex(16)
         while True:
             try:

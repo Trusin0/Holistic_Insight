@@ -23,6 +23,55 @@ def login(request):
 def logout(request):
     pass
 
+def check_session(request):
+    session_key = request.GET.get('session_key')
+    try:
+        session = models.Session.objects.get(session_key=session_key)
+    except models.Session.DoesNotExist:
+        return JsonResponse({'error': 'Session not found'}, status=404)
+    except models.Session.MultipleObjectsReturned:
+        return JsonResponse({'error': 'Multiple sessions with the same key'}, status=500)
+    
+
+
+
+
+def save_game_data(request):
+    # other logic
+    # ...
+    # other logic
+
+    game_name = request.GET.get('game_name')
+    # call the corresponding save function
+    if game_name == 'schulte':
+        return schulte_save(request)
+    elif game_name == 'react':
+        return react_save(request)
+    
+
+def react_save(request):
+    try:
+        # 测试时使用GET请求
+        print(request.GET)
+        react_time = float(request.GET.get('react_time'))
+        play_time = request.GET.get('play_time')
+        usr_name = request.GET.get('usr_name')
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=400)
+    
+    try:
+        user = models.Usr.objects.get(usr_name=usr_name)
+    except models.Usr.DoesNotExist:
+        return JsonResponse({'error': 'User not found'}, status=404)
+    
+    react = models.React(usr=user, react_time=react_time, play_time=play_time)
+    try:
+        react.save()
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
+    
+    return JsonResponse({'message': 'Save successful'})
+
 def schulte_save(request):
     try:
         # 测试时使用GET请求
