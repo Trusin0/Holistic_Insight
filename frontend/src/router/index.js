@@ -15,6 +15,14 @@ export default new Router({
     {
       path: '/Index',
       component: Index
+    },
+    {
+      path: '/reaction-time',
+      component: () => import(`@/views/reactionTime/Index.vue`)
+    },
+    {
+      path: '/shuerte-grip',
+      component: () => import(`@/views/shuerteGrip/Index.vue`)
     }
   ]
 })

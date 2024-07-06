@@ -17,9 +17,9 @@ export const gameList = [
   },
   {
     id: 3,
-    title: '测试用',
-    intro: '测试用',
-    path: '/test'
+    title: '舒尔特方格',
+    intro: '随时随地打开，开启专注力训练',
+    path: '/shuerte-grip'
   },
   {
     id: 4,

@@ -28,7 +28,7 @@ export default {
 
 <style scoped>
 .main-content {
-  padding-top: 80px;   /* 给top-bar预留空间 */
-  padding-bottom: 80px; /* 给footer-bar预留空间 */
+  padding-top: 100px;
+  padding-bottom: 400px; /* 给footer-bar预留空间 */
 }
 </style>
