@@ -23,6 +23,10 @@ export default new Router({
     {
       path: '/shuerte-grip',
       component: () => import(`@/views/shuerteGrip/Index.vue`)
+    },
+    {
+      path: '/number-memory',
+      component: () => import(`@/views/numberMemory/Index.vue`)
     }
   ]
 })
