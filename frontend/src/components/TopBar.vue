@@ -77,18 +77,27 @@ export default {
       this.updateLoginStatus()
     },
     logIn () {
-      this.$http.get('http://127.0.0.1:8000/api/login').then((response) => {
-        var res = JSON.parse(response.bodyText)
-        if (res.respCode === '000000') {
-          this.$message.success('登录成功')
-          window.localStorage.setItem('holistic-insight-token', res.data.token)
-          this.$store.state.userInfo = res.data
-          this.updateLoginStatus()
-        } else {
-          this.$message.error('登录失败，请重试')
-          console.log(res['respMsg'])
-        }
-      })
+      this.$http.get('http://127.0.0.1:8000/api/login')
+        .then((response) => {
+          window.open(response.data.redirect_url, '_blank')
+          // window.location.href = response.data.redirect_url
+        })
+        .catch((error) => {
+          console.error('Error during login:', error)
+        })
+    },
+    handleOAuthCallback (event) {
+      if (event.data.type === 'OAUTH_CALLBACK') {
+        const data = event.data.data
+        console.log('OAuth callback data:', data)
+        // Handle the received data, e.g., store in Vuex, update UI, etc.
+      }
+    },
+    created () {
+      window.addEventListener('message', this.handleOAuthCallback)
+    },
+    beforeDestroy () {
+      window.removeEventListener('message', this.handleOAuthCallback)
     }
   }
 }

@@ -36,7 +36,7 @@ export default {
     }
   },
   methods: {
-    startGame () {
+    start () {
       this.gameStarted = true
       this.ballsRemaining = 30 // 重置球的数量
       this.createBalls()
