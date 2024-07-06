@@ -1,0 +1,514 @@
+{
+    "questionSets":[
+        {
+            "text": "一、哪一个答案最能贴切地描述你平时的感受或行为？",
+            "questions": [
+            {
+                "text": "当你要外出一整天，你会",
+                "optionAText": "计划你要做什么和在什么时候做",
+                "optionAType": "J",
+                "optionBText": "说去就去",
+                "optionBType": "P"
+            },
+            {
+                "text": "你认为自己是一个",
+                "optionAText": "较为随兴所至的人",
+                "optionAType": "P",
+                "optionBText": "较为有条理的人",
+                "optionBType": "J"
+            },
+            {
+                "text": "假如你是一位老师，你会选教",
+                "optionAText": "以事实为主的课程",
+                "optionAType": "S",
+                "optionBText": "涉及理论的课程",
+                "optionBType": "N"
+            },
+            {
+                "text": "你通常",
+                "optionAText": "与人容易混熟",
+                "optionAType": "E",
+                "optionBText": "比较沉静或矜持",
+                "optionBType": "I"
+            },
+            {
+                "text": "一般来说，你和哪些人比较合得来？",
+                "optionAText": "富于想象力的人",
+                "optionAType": "N",
+                "optionBText": "现实的人",
+                "optionBType": "S"
+            },
+            {
+                "text": "你是否经常让",
+                "optionAText": "你的情感支配你的理智",
+                "optionAType": "F",
+                "optionBText": "你的理智主宰你的情感",
+                "optionBType": "T"
+            },
+            {
+                "text": "处理许多事情上，你会喜欢",
+                "optionAText": "凭兴所至行事",
+                "optionAType": "P",
+                "optionBText": "按照计划行事",
+                "optionBType": "J"
+            },
+            {
+                "text": "你是否",
+                "optionAText": "容易让人了解",
+                "optionAType": "E",
+                "optionBText": "难于让人了解",
+                "optionBType": "I"
+            },
+            {
+                "text": "按照程序表做事",
+                "optionAText": "合你心意",
+                "optionAType": "J",
+                "optionBText": "令你感到束缚",
+                "optionBType": "P"
+            },
+            {
+                "text": "当你有一份特别的任务，你会喜欢",
+                "optionAText": "开始前小心组织计划",
+                "optionAType": "J",
+                "optionBText": "边做边找须做什么",
+                "optionBType": "P"
+            },
+            {
+                "text": "在大多数情况下，你会选择",
+                "optionAText": "顺其自然",
+                "optionAType": "P",
+                "optionBText": "按程序表做事",
+                "optionBType": "J"
+            },
+            {
+                "text": "大多数人会说你是一个",
+                "optionAText": "重视自我隐私的人",
+                "optionAType": "I",
+                "optionBText": "非常坦率开放的人",
+                "optionBType": "E"
+            },
+            {
+                "text": "你宁愿被人认为是一个",
+                "optionAText": "实事求是的人",
+                "optionAType": "S",
+                "optionBText": "机灵的人",
+                "optionBType": "N"
+            },
+            {
+                "text": "在一大群人当中，通常是",
+                "optionAText": "你介绍大家认识",
+                "optionAType": "E",
+                "optionBText": "别人介绍你",
+                "optionBType": "I"
+            },
+            {
+                "text": "你会跟哪些人做朋友？",
+                "optionAText": "常提出新注意的",
+                "optionAType": "N",
+                "optionBText": "脚踏实地的",
+                "optionBType": "S"
+            }
+            ]
+        },
+        {
+            "text": "二、在下列每一对词语中，哪一个词语更合你心意？请仔细想想这些词语的意义，而不要理会他们的字形或读音。",
+            "questions": [
+                {
+                    "optionAText": "注重隐私",
+                    "optionAType": "I",
+                    "optionBText": "坦率开放",
+                    "optionBType": "E",
+                   "text": ""
+                },
+                {
+                    "optionAText": "预先安排的",
+                    "optionAType": "J",
+                    "optionBText": "无计划的",
+                    "optionBType": "P",
+                    "text": ""
+                },
+                {
+                    "optionAText": "抽象",
+                    "optionAType": "N",
+                    "optionBText": "具体",
+                    "optionBType": "S",
+                    "text": ""
+                },
+                {
+                    "optionAText": "温柔",
+                    "optionAType": "F",
+                    "optionBText": "坚定",
+                    "optionBType": "T",
+                    "text": ""
+                  },
+                  {
+                    "optionAText": "思考",
+                    "optionAType": "T",
+                    "optionBText": "感受",
+                    "optionBType": "F",
+                    "text": ""
+                  },
+                  {
+                    "optionAText": "事实",
+                    "optionAType": "S",
+                    "optionBText": "意念",
+                    "optionBType": "N",
+                    "text": ""
+                  },
+                  {
+                    "optionAText": "冲动",
+                    "optionAType": "P",
+                    "optionBText": "决定",
+                    "optionBType": "J",
+                    "text": ""
+                  },
+                  {
+                    "optionAText": "热衷",
+                    "optionAType": "E",
+                    "optionBText": "文静",
+                    "optionBType": "I",
+                    "text": ""
+                  },
+                  {
+                    "optionAText": "文静",
+                    "optionAType": "I",
+                    "optionBText": "外向",
+                    "optionBType": "E",
+                    "text": ""
+                  },
+                  {
+                    "optionAText": "有系统",
+                    "optionAType": "J",
+                    "optionBText": "随意",
+                    "optionBType": "P",
+                    "text": ""
+                  },
+                  {
+                    "optionAText": "理论",
+                    "optionAType": "N",
+                    "optionBText": "肯定",
+                    "optionBType": "S",
+                    "text": ""
+                  },
+                  {
+                    "optionAText": "敏感",
+                    "optionAType": "F",
+                    "optionBText": "公正",
+                    "optionBType": "T",
+                    "text": ""
+                  },
+                  {
+                    "optionAText": "令人信服",
+                    "optionAType": "T",
+                    "optionBText": "感人的",
+                    "optionBType": "F",
+                    "text": ""
+                  },
+                  {
+                    "optionAText": "声明",
+                    "optionAType": "S",
+                    "optionBText": "概念",
+                    "optionBType": "N",
+                    "text": ""
+                  },
+                  {
+                    "optionAText": "不受约束",
+                    "optionAType": "P",
+                    "optionBText": "预先安排",
+                    "optionBType": "J",
+                    "text": ""
+                  },
+                  {
+                    "optionAText": "矜持",
+                    "optionAType": "I",
+                    "optionBText": "健谈",
+                    "optionBType": "E",
+                    "text": ""
+                  },
+                  {
+                    "optionAText": "有条不紊",
+                    "optionAType": "J",
+                    "optionBText": "不拘小节",
+                    "optionBType": "P",
+                    "text": ""
+                  },
+                  {
+                    "optionAText": "意念",
+                    "optionAType": "N",
+                    "optionBText": "实况",
+                    "optionBType": "S",
+                    "text": ""
+                },
+                {
+                    "optionAText": "同情怜悯",
+                    "optionAType": "F",
+                    "optionBText": "远见",
+                    "optionBType": "T",
+                    "text": ""
+                },
+                {
+                    "optionAText": "利益",
+                    "optionAType": "T",
+                    "optionBText": "祝福",
+                    "optionBType": "F",
+                    "text": ""
+                }
+            ]
+        },
+        {
+            "text": "三、哪一个答案最能贴切地描绘你一般的感受或行为。",
+            "questions": [
+            {
+                "text": "当你要在一个星期内完成一个大项目，你在开始的时候会",
+                "optionAText": "把要做的不同工作依次列出",
+                "optionAType": "J",
+                "optionBText": "马上动工",
+                "optionBType": "P"
+              },
+              {
+                "text": "在社交场合中，你经常会感到",
+                "optionAText": "与某些人很难打开话匣儿和保持对话",
+                "optionAType": "I",
+                "optionBText": "与多数人都能从容地长谈",
+                "optionBType": "E"
+              },
+              {
+                "text": "要做许多人也做的事，你比较喜欢",
+                "optionAText": "按照一般认可的方法去做",
+                "optionAType": "S",
+                "optionBText": "构想一个自己的想法",
+                "optionBType": "N"
+              },
+              {
+                "text": "你刚认识的朋友能否说出你的兴趣？",
+                "optionAText": "马上可以",
+                "optionAType": "E",
+                "optionBText": "要待他们真正了解你之后才可以",
+                "optionBType": "I"
+              },
+              {
+                "text": "你通常较喜欢的科目是",
+                "optionAText": "讲授概念和原则的",
+                "optionAType": "N",
+                "optionBText": "讲授事实和数据的",
+                "optionBType": "S"
+              },
+              {
+                "text": "哪个是较高的赞誉，或称许为？",
+                "optionAText": "一贯感性的人",
+                "optionAType": "F",
+                "optionBText": "一贯理性的人",
+                "optionBType": "T"
+              },
+              {
+                "text": "你认为按照程序表做事",
+                "optionAText": "有时是需要的，但一般来说你不大喜欢这样做",
+                "optionAType": "P",
+                "optionBText": "大多数情况下是有帮助而且是你喜欢做的",
+                "optionBType": "J"
+              },
+              {
+                "text": "和一群人在一起，你通常会选",
+                "optionAText": "跟你很熟悉的个别人谈话",
+                "optionAType": "I",
+                "optionBText": "参与大伙的谈话",
+                "optionBType": "E"
+              },
+              {
+                "text": "在社交聚会上，你会",
+                "optionAText": "是说话很多的一个",
+                "optionAType": "E",
+                "optionBText": "让别人多说话",
+                "optionBType": "I"
+              },
+              {
+                "text": "把周末期间要完成的事列成清单，这个主意会",
+                "optionAText": "合你意",
+                "optionAType": "J",
+                "optionBText": "使你提不起劲",
+                "optionBType": "P"
+              },
+              {
+                "text": "哪个是较高的赞誉，或称许为",
+                "optionAText": "能干的",
+                "optionAType": "T",
+                "optionBText": "富有同情心",
+                "optionBType": "F"
+              },
+              {
+                "text": "你通常喜欢",
+                "optionAText": "事先安排你的社交约会",
+                "optionAType": "J",
+                "optionBText": "随兴之所至做事",
+                "optionBType": "P"
+              },
+              {
+                "text": "总的说来，要做一个大型作业时，你会选",
+                "optionAText": "边做边想该做什么",
+                "optionAType": "P",
+                "optionBText": "首先把工作按步细分",
+                "optionBType": "J"
+              },
+              {
+                "text": "你能否滔滔不绝地与人聊天",
+                "optionAText": "只限于跟你有共同兴趣的人",
+                "optionAType": "I",
+                "optionBText": "几乎跟任何人都可以",
+                "optionBType": "E"
+              },
+              {
+                "text": "你会",
+                "optionAText": "跟随一些证明有效的方法",
+                "optionAType": "S",
+                "optionBText": "分析还有什么毛病，及针对尚未解决的难题",
+                "optionBType": "N"
+              },
+              {
+                "text": "为乐趣而阅读时，你会",
+                "optionAText": "喜欢奇特或创新的表达方式",
+                "optionAType": "N",
+                "optionBText": "喜欢作者直话直说",
+                "optionBType": "S"
+              },
+              {
+                "text": "你宁愿替哪一类上司（或者老师）工作？",
+                "optionAText": "天性淳良，但常常前后不一的",
+                "optionAType": "F",
+                "optionBText": "言词尖锐但永远合乎逻辑的",
+                "optionBType": "T"
+              },
+              {
+                "text": "你做事多数是",
+                "optionAText": "按当天心情去做",
+                "optionAType": "P",
+                "optionBText": "照拟好的程序表去做",
+                "optionBType": "J"
+              },
+              {
+                "text": "你是否",
+                "optionAText": "可以和任何人按需求从容地交谈",
+                "optionAType": "E",
+                "optionBText": "只是对某些人或在某种情况下才可以畅所欲言",
+                "optionBType": "I"
+              },
+              {
+                "text": "要作决定时，你认为比较重要的是",
+                "optionAText": "据事实衡量",
+                "optionAType": "T",
+                "optionBText": "考虑他人的感受和意见",
+                "optionBType": "F"
+              }
+            ]
+        },
+        {
+            "text": "四、在下列每一对词语中，哪一个词语更合你心意？",
+            "questions": [
+                {
+                    "optionAText": "想象的",
+                    "optionAType": "N",
+                    "optionBText": "真实的",
+                    "optionBType": "S",
+                    "text": ""
+                  },
+                  {
+                    "optionAText": "仁慈慷慨的",
+                    "optionAType": "F",
+                    "optionBText": "意志坚定的",
+                    "optionBType": "T",
+                    "text": ""
+                  },
+                  {
+                    "optionAText": "公正的",
+                    "optionAType": "T",
+                    "optionBText": "有关怀心",
+                    "optionBType": "F",
+                    "text": ""
+                  },
+                  {
+                    "optionAText": "制作",
+                    "optionAType": "S",
+                    "optionBText": "设计",
+                    "optionBType": "N",
+                    "text": ""
+                  },
+                  {
+                    "optionAText": "可能性",
+                    "optionAType": "N",
+                    "optionBText": "必然性",
+                    "optionBType": "S",
+                    "text": ""
+                  },
+                  {
+                    "optionAText": "温柔",
+                    "optionAType": "F",
+                    "optionBText": "力量",
+                    "optionBType": "T",
+                    "text": ""
+                  },
+                  {
+                    "optionAText": "实际",
+                    "optionAType": "T",
+                    "optionBText": "多愁善感",
+                    "optionBType": "F",
+                    "text": ""
+                  },
+                  {
+                    "optionAText": "制造",
+                    "optionAType": "S",
+                    "optionBText": "创造",
+                    "optionBType": "N",
+                    "text": ""
+                  },
+                  {
+                    "optionAText": "新颖的",
+                    "optionAType": "N",
+                    "optionBText": "已知的",
+                    "optionBType": "S",
+                    "text": ""
+                  },
+                  {
+                    "optionAText": "同情",
+                    "optionAType": "F",
+                    "optionBText": "分析",
+                    "optionBType": "T",
+                    "text": ""
+                  },
+                  {
+                    "optionAText": "坚持己见",
+                    "optionAType": "T",
+                    "optionBText": "温柔有爱心",
+                    "optionBType": "F",
+                    "text": ""
+                  },
+                  {
+                    "optionAText": "具体的",
+                    "optionAType": "S",
+                    "optionBText": "抽象的",
+                    "optionBType": "N",
+                    "text": ""
+                  },
+                  {
+                    "optionAText": "全心投入",
+                    "optionAType": "F",
+                    "optionBText": "有决心的",
+                    "optionBType": "T",
+                    "text": ""
+                  },
+                  {
+                    "optionAText": "能干",
+                    "optionAType": "T",
+                    "optionBText": "仁慈",
+                    "optionBType": "F",
+                    "text": ""
+                  },
+                  {
+                    "optionAText": "实际",
+                    "optionAType": "S",
+                    "optionBText": "创新",
+                    "optionBType": "N",
+                    "text": ""
+                  }
+            ]
+        }
+    ]
+}
