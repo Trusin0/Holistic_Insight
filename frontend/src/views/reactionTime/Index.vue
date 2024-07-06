@@ -30,6 +30,7 @@
     <div v-if="step === 6" class="settlement-screen" @click="handleClick">
       <p>测试结束</p>
       <p>平均时间：{{ allTime / 5 }}ms</p>
+      <button @click="saveScore">保存成绩</button>
     </div>
   </div>
 </template>
@@ -82,6 +83,18 @@ export default {
   },
   beforeDestroy () {
     clearTimeout(this.timer) // 组件销毁时清除定时器
+  },
+  saveScore () {
+    this.$http.get('http://127.0.0.1:8000/api/save_reaction_time_score?score=' + (this.allTime / 5) + 'id=' + this.$store.state.id)
+      .then(response => {
+        var res = JSON.parse(response.bodyText)
+        if (res.respCode === '000000') {
+          this.$message.success('新增成绩成功')
+        } else {
+          this.$message.error('新增成绩失败，请重试')
+          console.log(res['respMsg'])
+        }
+      })
   }
 }
 </script>
