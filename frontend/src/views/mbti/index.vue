@@ -113,7 +113,7 @@ export default {
   align-items: center;
   width: 100%;
   height: 100vh; /* 使初始屏幕填满视窗的高度 */
-  background-color: #A7D2FCFC; /* 一个明亮的背景颜色 */
+  background-color: #3496d9; /* 一个明亮的背景颜色 */
   text-align: center;
   padding: 20px; /* 添加一些内边距 */
   font-size: 70px; /* 增大字体大小，更易阅读 */
@@ -128,7 +128,7 @@ export default {
   justify-content: center;
   width: 100%;
   height: 100vh; /* 使初始屏幕填满视窗的高度 */
-  background-color: #A7D2FCFC; /* 一个明亮的背景颜色 */
+  background-color: #3496d9; /* 一个明亮的背景颜色 */
   color: #FFFFFFFC; /* 白色文字 */
   font-weight: bold; /* 字体加粗 */
 }
@@ -191,7 +191,7 @@ export default {
   font-size: 40px; /* 适中的按钮文本大小 */
   font-weight: bold; /* 字体加粗 */
   color: #FFFFFFFC; /* 白色文字 */
-  background-color: #3FB1FFFC; /* 按钮背景颜色 */
+  background-color: rgba(98, 227, 142, 0.99); /* 按钮背景颜色 */
   border: none;
   border-radius: 10px; /* 圆角边框 */
   cursor: pointer; /* 显示手型光标表示可点击 */
