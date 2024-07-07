@@ -33,8 +33,8 @@
 
 <script>
 export default {
-  data() {
-    console.log("Game started") // 确认这个方法是否被调用
+  data () {
+    console.log('Game started') // 确认这个方法是否被调用
     return {
       size: 4, // 网格大小
       grid: [], // 网格
@@ -42,16 +42,16 @@ export default {
       correctOrder: [], // 正确的顺序
       correctCount: 0, // 正确的数量
       timeStart: 0, // 游戏开始时间
-      timeElapsed: 0, // 游戏用时
+      timeElapsed: 0 // 游戏用时
     }
   },
   methods: {
     startGame () {
-      console.log("Game started") // 确认这个方法是否被调用
+      console.log('Game started') // 确认这个方法是否被调用
 
       // 生成从1到size^2的数字数组
       const totalCells = this.size * this.size
-      const numbers = Array.from({ length: totalCells }, (_, index) => index + 1);
+      const numbers = Array.from({length: totalCells}, (_, index) => index + 1)
 
       // 打乱数组（Fisher-Yates洗牌算法）
       for (let i = numbers.length - 1; i > 0; i--) {
@@ -65,46 +65,52 @@ export default {
       this.correctOrder = new Array(numbers.length)
       numbers.forEach((number, index) => {
         this.correctOrder[number - 1] = index
-      });
+      })
 
       // 填充网格
-      this.grid = [];
+      this.grid = []
       for (let i = 0; i < this.size; i++) {
         const start = i * this.size
         const end = start + this.size
-        const row = numbers.slice(start, end).map(number => ({  // 对象类型转换
+        const row = numbers.slice(start, end).map(number => ({ // 对象类型转换
           number: number,
-          color: 'lightgrey'  // 初始化颜色
+          color: 'lightgrey' // 初始化颜色
         }))
         this.grid.push(row)
       }
 
       this.correctCount = 0
+      this.timeStart = 0
+      this.timeElapsed = 0
       this.stage = 1
-      console.log("Game started, gameStarted:", this.gameStarted) // 检查 gameStarted 状态
-      this.timeStart = Date.now()
+      console.log('Game started, gameStarted:', this.gameStarted) // 检查 gameStarted 状态
     },
     handleClick (cell, rowIndex, cellIndex) {
       const currentIndex = rowIndex * this.size + cellIndex
 
+      // 初次点击才开始计时
+      if (this.timeStart === 0 && this.correctCount === 0) {
+        this.timeStart = Date.now()
+      }
+
       if (this.correctOrder[this.correctCount] === currentIndex) {
-        cell.color = 'green'   // 将cell颜色置为绿色
-        this.correctCount++    // 增加正确点击的计数
+        cell.color = 'green' // 将cell颜色置为绿色
+        this.correctCount++ // 增加正确点击的计数
 
         // 完成所有点击，游戏结束
         if (this.correctCount === this.correctOrder.length) {
           this.timeElapsed = (Date.now() - this.timeStart) / 1000
           this.stage = 2
         }
-      } else if (cell.number > this.correctCount + 1){
+      } else if (cell.number > this.correctCount + 1) {
         cell.color = 'gray' // 将cell颜色置为灰色
       }
     },
     resetGame () {
       this.stage = 0
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <style scoped>
@@ -120,17 +126,16 @@ export default {
   text-align: center;
   padding: 20px; /* 添加一些内边距 */
   font-size: 70px; /* 增大字体大小，更易阅读 */
-  color: rgba(241, 243, 245, 0.99); /* 白色文字 */
+  color: #FFFFFFFC; /* 白色文字 */
   margin-bottom: 80px; /* 添加下边距 */
   font-weight: bold; /* 字体加粗 */
 }
-
 
 .initial-screen button {
   padding: 10px 15px; /* 按钮内边距 */
   font-weight: bold; /* 字体加粗 */
   font-size: 40px; /* 适中的按钮文本大小 */
-  color: rgba(241, 243, 245, 0.99); /* 白色文字 */
+  color: #FFFFFFFC; /* 白色文字 */
   background-color: #3FB1FFFC; /* 按钮背景颜色 */
   border: none;
   border-radius: 10px; /* 圆角边框 */
@@ -161,18 +166,16 @@ export default {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* 根据网格的列数调整 */
   grid-template-rows: repeat(4, 1fr); /* 创建4行，确保是4x4的网格 */
-  column-gap: 5px; /* 网格之间的间隙 */
-  row-gap: 10px; /* 网格之间的间隙 */
-  padding: 10px; /* 容器的内边距 */
+//column-gap: 5px; /* 网格之间的间隙 */ //row-gap: 10px; /* 网格之间的间隙 */ padding: 10px; /* 容器的内边距 */
   margin: auto; /* 居中显示 */
-  aspect-ratio: 1 / 1; /* 保持容器为正方形 */
   width: 100%; /* 容器宽度，根据实际需要调整 */
   height: 100%; /* 容器长度，根据实际需要调整 */
-  max-width: 600px; /* 最大宽度限制 */
+  max-width: 540px; /* 最大宽度限制 */
   max-height: 540px; /* 最大长度限制 */
+  aspect-ratio: 1 / 1; /* 保持容器为正方形 */
   background: #e0e0e0; /* 轻灰色背景，可以根据主题调整 */
-  border-radius: 8px; /* 圆角边框 */
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* 轻微的阴影效果提升层次感 */
+  border-radius: 30px; /* 圆角边框 */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* 轻微的阴影效果提升层次感 */
 }
 
 /* 单元格样式 */
@@ -180,15 +183,14 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-
+  background: #9d9d9d; /* 轻灰色背景，可以根据主题调整 */
   width: 100%; /* 充满容器列宽 */
   height: 70%; /* 充满容器行高 */
   font-size: 36px; /* 数字的字体大小 */
   font-weight: bold; /* 字体加粗 */
   color: #333; /* 字体颜色，提高可读性 */
   cursor: pointer; /* 表明这是一个可点击的元素 */
-
-  border-radius: 8px; /* 圆角边框 */
+//aspect-ratio: 1 / 1; /* 保持单元格为正方形 */ border-radius: 25px; /* 圆角边框 */
   transition: background-color 0.3s, transform 0.2s; /* 平滑的背景色变化和轻微放大效果 */
 }
 
@@ -220,7 +222,7 @@ export default {
   text-align: center;
   padding: 20px; /* 添加一些内边距 */
   font-size: 50px; /* 增大字体大小，更易阅读 */
-  color: rgba(241, 243, 245, 0.99); /* 白色文字 */
+  color: #FFFFFFFC; /* 白色文字 */
   margin-bottom: 80px; /* 添加下边距 */
   font-weight: bold; /* 字体加粗 */
 }
@@ -229,7 +231,7 @@ export default {
   padding: 10px 20px; /* 按钮内边距 */
   font-size: 40px; /* 适中的按钮文本大小 */
   font-weight: bold; /* 字体加粗 */
-  color: rgba(241, 243, 245, 0.99); /* 白色文字 */
+  color: #FFFFFFFC; /* 白色文字 */
   background-color: #3FB1FFFC; /* 按钮背景颜色 */
   border: none;
   border-radius: 10px; /* 圆角边框 */
@@ -240,7 +242,6 @@ export default {
 .game-over-screen button:hover {
   background-color: #3580E7FF; /* 鼠标悬停时按钮颜色加深 */
 }
-
 
 .button:hover {
   background-color: #0056b3; /* 鼠标悬停时的背景颜色 */
@@ -261,11 +262,7 @@ export default {
   }
 }
 
-
-
 </style>
-
-
 
 // WEBPACK FOOTER //
 // src/views/shuerteGrip/Index.vue

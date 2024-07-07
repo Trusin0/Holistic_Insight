@@ -29,9 +29,9 @@ export const gameList = [
   },
   {
     id: 5,
-    title: '测试用',
-    intro: '测试用',
-    path: '/test'
+    title: 'MBTI人格测试',
+    intro: '测试您的人格特质',
+    path: '/mbti'
   },
   {
     id: 6,

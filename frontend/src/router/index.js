@@ -25,6 +25,10 @@ export default new Router({
       component: () => import(`@/views/shuerteGrip/Index.vue`)
     },
     {
+      path: '/mbti',
+      component: () => import(`@/views/mbti/Index.vue`)
+    },
+    {
       path: '/number-memory',
       component: () => import(`@/views/numberMemory/Index.vue`)
     },
