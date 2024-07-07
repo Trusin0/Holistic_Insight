@@ -91,8 +91,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'holistic_insight',
         'USER': 'root',
-        'PASSWORD': 'Hello@1234...',
-        'HOST': '127.0.0.1',
+        'PASSWORD': 'ss123456',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 

@@ -187,7 +187,7 @@ export default {
   font-weight: bold; /* 字体加粗 */
   color: #333; /* 字体颜色，提高可读性 */
   cursor: pointer; /* 表明这是一个可点击的元素 */
-  //aspect-ratio: 1 / 1; /* 保持单元格为正方形 */
+
   border-radius: 8px; /* 圆角边框 */
   transition: background-color 0.3s, transform 0.2s; /* 平滑的背景色变化和轻微放大效果 */
 }
