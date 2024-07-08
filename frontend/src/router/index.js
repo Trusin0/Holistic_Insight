@@ -27,6 +27,10 @@ export default new Router({
     {
       path: '/mbti',
       component: () => import(`@/views/mbti/Index.vue`)
+    },
+    {
+      path: '/color-sensitivity',
+      component: () => import(`@/views/colorSensitivity/Index.vue`)
     }
   ]
 })

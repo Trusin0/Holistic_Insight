@@ -29,9 +29,9 @@ export const gameList = [
   },
   {
     id: 5,
-    title: '测试用',
-    intro: '测试用',
-    path: '/test'
+    title: '色觉敏感度测试',
+    intro: '测试您的色觉敏感度',
+    path: '/color-sensitivity'
   },
   {
     id: 6,
