@@ -14,6 +14,7 @@
         <div class="top-bar-item">
           <span :class="{ active: $route.path === '/Register' }" @click="$router.push('/Register')">注册</span>
           <span :class="{ active: $route.path === '/Login' }" @click="logIn">登录</span>
+          <span :class="{ active: $route.path === '/CheckLoginStatus' }" @click="checkLoginStatus">验证登录状态</span>
         </div>
       </div>
     </div>
@@ -73,18 +74,34 @@ export default {
       for (let i in this.$store.state.userInfo) {
         this.$store.state.userInfo[i] = ''
       }
-      window.localStorage.removeItem('human-benchmark-token')
       this.updateLoginStatus()
     },
     logIn () {
       this.$http.get('http://127.0.0.1:8000/api/auth/login')
         .then((response) => {
           window.open(response.data.redirect_url, '_blank')
-          // window.location.href = response.data.redirect_url
+          // 开启一个新页面来进行验证
         })
         .catch((error) => {
           console.error('Error during login:', error)
         })
+    },
+    async checkLoginStatus () {
+      try {
+        const response = await this.$http.get('http://127.0.0.1:8000/api/auth/login_status')
+        if (response.data.is_login === true) {
+          this.$store.state.userInfo.id = response.data.usr_id
+          this.$store.state.userInfo.username = response.data.usr_name
+          this.$router.push({ name: 'index' })
+        } else {
+          console.error('OAuth failed:', response.data.message)
+        }
+      } catch (error) {
+        console.error('Error checking login status:', error)
+      }
+    },
+    mounted () {
+      this.checkLoginStatus()
     }
   }
 }

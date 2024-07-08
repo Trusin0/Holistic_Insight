@@ -7,8 +7,7 @@ const store = new Vuex.Store({
   state: {
     userInfo: {
       id: '',
-      username: '',
-      token: '' || window.localStorage.getItem('holistic-insight-token')
+      username: ''
     },
     loading: false
   },

@@ -35,8 +35,8 @@ export const gameList = [
   },
   {
     id: 6,
-    title: '测试用',
-    intro: '测试用',
-    path: '/test'
+    title: '瞄准测试',
+    intro: '测试您的鼠标定位能力',
+    path: '/aim-test'
   }
 ]

@@ -29,6 +29,10 @@ export default new Router({
       path: '/oauth/callback',
       name: 'oauthCallback',
       component: () => import('@/components/OAuthCallback.vue')
+    },
+    {
+      path: '/aim-test',
+      component: () => import(`@/views/aimTest/Index.vue`)
     }
   ]
 })
