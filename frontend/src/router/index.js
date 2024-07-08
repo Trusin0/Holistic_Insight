@@ -25,6 +25,10 @@ export default new Router({
       component: () => import(`@/views/shuerteGrip/Index.vue`)
     },
     {
+      path: '/aim-test',
+      component: () => import(`@/views/aimTest/Index.vue`)
+    },
+    {
       path: '/mbti',
       component: () => import(`@/views/mbti/Index.vue`)
     },
