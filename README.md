@@ -72,3 +72,44 @@ python manage.py runserver 8000
 好了，你可以开始干活了。
 
 ![img.png](img.png)
+
+### 7.9日更新：运行说明
+本项目目前代码仓库的代码可以正常执行
+```
+cd frontend
+npm run build
+```
+但要正常运行django服务器，你需要下载安装MySQL，在其中新建一个空数据库（以名称holistic_insight为例），然后修改Holistic_Insight/settings.py中的
+```
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'holistic_insight',  # 填写你的空数据库名称
+        'USER': 'root', # 你自己的user名，一般是root
+        'PASSWORD': 'password', # 你的密码
+        'HOST': 'localhost',
+        'PORT': '3306',  # 根据你的实际情况
+    }
+}
+```
+然后，在根目录（即manage.py所在的目录）中，执行数据库迁移文件生成：
+```
+python manage.py makemigrations
+```
+该语句会根据models.py中编写的模型，自动生成可以被应用与数据库的迁移文件。
+需要理解的是，这个models.py中的内容最开始是有俊儒的已经创建好表现的数据库自动生成的，但后期雄哥在编写后端时已经对其做出了修改，这时候我们实际上执行的是一个反迁。
+即我们会把最新的数据库根据models.py复原出来，因此只需要你们新建一个空数据库就可以了。
+执行下述语句，会将刚刚生成的迁移文件真正应用到数据库上，自动创建相应的表项：
+```
+python manage.py migrate
+```
+此时，理论上你就可以使用
+```
+python manage.py runserver 8000
+```
+运行django服务器了，但可能会遇到部分的依赖包缺失，例如常见的pymysql和requests，这个简单，缺什么装什么就行了：
+```
+pip install pymysql
+pip install requests
+pip install ···# 缺啥装啥
+```
