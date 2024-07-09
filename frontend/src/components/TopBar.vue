@@ -3,7 +3,7 @@
     <div id="top-bar">
       <div class="top-bar-item">
         <span :class="{ active: $route.path === '/HelloWorld' }" @click="$router.push('/HelloWorld')">Holistic Insight</span>
-        <span :class="{ active: $route.path === '/Tendency' }" @click="$router.push('/Tendency')">趋势</span>
+        <span :class="{ active: $route.path === '/Tendency' }" @click="$router.push('/Dashboard')">趋势</span>
       </div>
       <div v-if="$store.state.userInfo.username">
         <div class="top-bar-item">

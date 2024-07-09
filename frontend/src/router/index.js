@@ -43,6 +43,10 @@ export default new Router({
     {
       path: '/color-sensitivity',
       component: () => import(`@/views/colorSensitivity/Index.vue`)
+    },
+    {
+      path: '/Dashboard',
+      component: () => import(`@/views/Dashboard/Index.vue`)
     }
   ]
 })
