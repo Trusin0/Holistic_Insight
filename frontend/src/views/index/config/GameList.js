@@ -38,5 +38,11 @@ export const gameList = [
     title: '瞄准测试',
     intro: '测试您的鼠标定位能力',
     path: '/aim-test'
-  }
+  },
+  {
+    id: 7,
+    title: '色觉敏感度测试',
+    intro: '测试您的色觉敏感度',
+    path: '/color-sensitivity'
+  },
 ]

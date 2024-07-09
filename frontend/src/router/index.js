@@ -39,6 +39,10 @@ export default new Router({
     {
       path: '/figure-memory',
       component: () => import(`@/views/figureMemory/Index.vue`)
+    },
+    {
+      path: '/color-sensitivity',
+      component: () => import(`@/views/colorSensitivity/Index.vue`)
     }
   ]
 })
