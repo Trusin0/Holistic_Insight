@@ -160,7 +160,7 @@ export default {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100vh; /* 使初始屏幕填满视窗的高度 */
+  height: 110vh; /* 使初始屏幕填满视窗的高度 */
   background-color: #A7D2FCFC; /* 一个明亮的背景颜色 */
   color: #333333; /* 文本颜色 */
   text-align: center;

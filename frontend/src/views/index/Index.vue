@@ -36,7 +36,7 @@ export default {
   flex-direction: column; /* 使图片和文字在垂直方向排列 */
   justify-content: center; /* 在主轴（垂直方向）上居中 */
   align-items: center; /* 在交叉轴（水平方向）上居中 */
-  height: 100vh; /* 使容器占满整个视口高度 */
+  height: 200vh; /* 使容器占满整个视口高度 */
   text-align: center; /* 使文本在行内居中 */
 }
 
