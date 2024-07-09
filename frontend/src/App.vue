@@ -16,6 +16,7 @@
 
 import TopBar from '@/components/TopBar.vue'
 import FooterBar from '@/components/FooterBar.vue'
+import Dashboard from '@/components/Dashboard.vue'
 
 export default {
   name: 'App',

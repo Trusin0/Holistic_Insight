@@ -57,7 +57,7 @@ python manage.py runserver 8000
 虽然现在看来项目的架构非常的庞大，但是实际上你只需要关注一小部分的内容：
 1. frontend/src 这个文件夹存放了几乎所有的资源，如果你是前端的coder，那么你需要着重关注这个
 文件夹，首先，components目录下存放了一些公用的组件（如header、footer等），这些组件几乎会出现在所有
-页面中。
+页面中。X
 2. src/views 这个文件夹存放了所有的页面，主要是index（游戏索引），game（目前只创建了一个reactionTime），
 后面还需要添加Login、Register、Profile等页面。
 3. src/router 这个文件夹存放了路由，主要是index.js和routes.js，index.js是入口文件，routes.js是路由配置文件。
