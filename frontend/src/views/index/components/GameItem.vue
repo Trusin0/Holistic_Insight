@@ -1,6 +1,6 @@
 <template>
   <div class="game-item" @click="$router.push(path)">
-    <img src="icon" style="width: 100px; height: auto;" >
+    <img :src=icon style="width: 100px; height: auto;" >
     <h4>{{ title }}</h4>
     <span>{{ intro }}</span>
   </div>
