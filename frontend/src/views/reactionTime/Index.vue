@@ -85,7 +85,8 @@ export default {
     clearTimeout(this.timer) // 组件销毁时清除定时器
   },
   saveScore () {
-    this.$http.get('http://127.0.0.1:8000/api/save_reaction_time_score?score=' + (this.allTime / 5) + 'id=' + this.$store.state.id)
+    const currentTime = new Date().getTime() // 记录当前时间
+    this.$http.get('http://127.0.0.1:8000/api/game/save_game_data?game_name=react&react_time=' + (this.allTime / 5) + 'usr_name=' + this.$store.state.userInfo.username + 'play_time=' + currentTime)
       .then(response => {
         var res = JSON.parse(response.bodyText)
         if (res.respCode === '000000') {
