@@ -38,12 +38,12 @@
           permalink: '#'
         },
         tests: [
-          { name: 'reaction-time', score: '2.0', percentile: '2.1' },
-          { name: 'number-memory', score: null, percentile: null },
-          { name: 'shuerte-grip', score: null, percentile: null },
+          { name: 'react', score: '2.0', percentile: '2.1' },
+          { name: 'number', score: null, percentile: null },
+          { name: 'shuerte', score: null, percentile: null },
           { name: 'mbti', score: null, percentile: null },
-          { name: 'aim-test', score: null, percentile: null },
-          { name: 'color-sensitivity', score: null, percentile: null },
+          { name: 'aim', score: null, percentile: null },
+          { name: 'color', score: null, percentile: null },
         ]
       };
     }

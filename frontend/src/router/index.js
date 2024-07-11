@@ -17,7 +17,7 @@ export default new Router({
       component: Index
     },
     {
-      path: '/react',
+      path: '/reaction-time',
       component: () => import(`@/views/reactionTime/Index.vue`)
     },
     {
@@ -25,7 +25,7 @@ export default new Router({
       component: () => import(`@/views/shuerteGrip/Index.vue`)
     },
     {
-      path: '/aim',
+      path: '/aim-test',
       component: () => import(`@/views/aimTest/Index.vue`)
     },
     {
@@ -33,7 +33,7 @@ export default new Router({
       component: () => import(`@/views/mbti/Index.vue`)
     },
     {
-      path: '/number',
+      path: '/number-memory',
       component: () => import(`@/views/numberMemory/Index.vue`)
     },
     {
@@ -41,7 +41,7 @@ export default new Router({
       component: () => import(`@/views/figureMemory/Index.vue`)
     },
     {
-      path: '/color',
+      path: '/color-sensitivity',
       component: () => import(`@/views/colorSensitivity/Index.vue`)
     },
     {
