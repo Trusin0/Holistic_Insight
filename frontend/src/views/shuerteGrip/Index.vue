@@ -112,7 +112,7 @@ export default {
     },
     saveScore () {
       const currentTime = new Date().getTime() // 记录当前时间
-      this.$http.get('http://127.0.0.1:8000/api/game/save_game_data?game_name=schulte&error_times=0&block_size=4&cost=' + (this.timeElapsed) + 'usr_name=' + this.$store.state.userInfo.username + 'play_time=' + currentTime)
+      this.$http.get('http://127.0.0.1:8000/api/game/save_game_data?game_name=schulte&error_times=0&block_size=4&cost=' + (this.timeElapsed) + '&usr_name=' + this.$store.state.userInfo.username + '&play_time=' + currentTime)
         .then(response => {
           var res = JSON.parse(response.bodyText)
           if (res.message === 'Save successful') {

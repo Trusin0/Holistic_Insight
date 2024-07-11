@@ -79,24 +79,24 @@ export default {
       } else if (this.step === 5) {
         this.start() // 开始下一轮测试
       }
+    },
+    saveScore () {
+      const currentTime = new Date().getTime() // 记录当前时间
+      this.$http.get('http://localhost:8000/api/game/save_game_data?game_name=react&react_time=' + (this.allTime / 5) + '&usr_name=' + this.$store.state.userInfo.username + '&play_time=' + currentTime)
+        .then(response => {
+          var res = JSON.parse(response.bodyText)
+          if (res['message'] === 'Save successful') {
+            this.$message.success('新增成绩成功')
+          } else {
+            this.$message.error('新增成绩失败，请重试')
+            console.log(res['respMsg'])
+          }
+        })
     }
   },
   beforeDestroy () {
     clearTimeout(this.timer) // 组件销毁时清除定时器
   },
-  saveScore () {
-    const currentTime = new Date().getTime() // 记录当前时间
-    this.$http.get('http://127.0.0.1:8000/api/game/save_game_data?game_name=react&react_time=' + (this.allTime / 5) + 'usr_name=' + this.$store.state.userInfo.username + 'play_time=' + currentTime)
-      .then(response => {
-        var res = JSON.parse(response.bodyText)
-        if (res.respCode === '000000') {
-          this.$message.success('新增成绩成功')
-        } else {
-          this.$message.error('新增成绩失败，请重试')
-          console.log(res['respMsg'])
-        }
-      })
-  }
 }
 </script>
 

@@ -5,6 +5,7 @@ from django.views.decorators.http import require_http_methods
 from django.conf import settings
 import backend.models as models
 from django.utils import timezone
+from datetime import datetime, timedelta
 
 # Create your views here.
 
@@ -91,8 +92,21 @@ def react_save(request):
         user = models.Usr.objects.get(usr_name=usr_name)
     except models.Usr.DoesNotExist:
         return JsonResponse({'error': 'User not found'}, status=404)
-    
-    react = models.React(usr=user, react_time=react_time, play_time=play_time)
+
+        # 确认 play_time 是时间戳，并将其转换为整数
+    timestamp = int(play_time)
+
+    # 将时间戳转换为秒（通常时间戳是毫秒）
+    timestamp /= 1000
+
+    # 将时间戳转换为 datetime 对象
+    play_time_dt = datetime.fromtimestamp(timestamp)
+
+    # 将 datetime 对象转换为日期字符串
+    formatted_play_time = play_time_dt.strftime('%Y-%m-%d')
+    print(formatted_play_time)
+
+    react = models.React(usr=user, react_time=react_time, play_time=formatted_play_time)
     try:
         react.save()
     except Exception as e:
@@ -109,17 +123,36 @@ def schulte_save(request):
         cost = float(request.GET.get('cost'))
         play_time = request.GET.get('play_time')
         usr_name = request.GET.get('usr_name')
+        print('Parse request success!')
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=400)
     
     try:
         user = models.Usr.objects.get(usr_name=usr_name)
+        print('user get success!')
     except models.Usr.DoesNotExist:
         return JsonResponse({'error': 'User not found'}, status=404)
-    
-    schulte = models.Schulte(usr=user, block_size=block_size, error_times=error_times, cost=cost, play_time=play_time)
+
+    # 确认 play_time 是时间戳，并将其转换为整数
+    timestamp = int(play_time)
+
+    # 将时间戳转换为秒（通常时间戳是毫秒）
+    timestamp /= 1000
+
+    # 将时间戳转换为 datetime 对象
+    play_time_dt = datetime.fromtimestamp(timestamp)
+
+    # 将 datetime 对象转换为日期字符串
+    formatted_play_time = play_time_dt.strftime('%Y-%m-%d')
+    print(formatted_play_time)
+
+    schulte = models.Schulte(usr=user, block_size=block_size, error_times=error_times, cost=cost, play_time=formatted_play_time)
+
+    # schulte = models.Schulte(usr=user, block_size=block_size, error_times=error_times, cost=cost)
+    print('schulte get success!')
     try:
         schulte.save()
+        print('Schulte save successful!')
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
     
