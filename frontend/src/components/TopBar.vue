@@ -77,7 +77,7 @@ export default {
       this.updateLoginStatus()
     },
     logIn () {
-      this.$http.get('http://127.0.0.1:8000/api/auth/login')
+      this.$http.get('http://localhost:8000/api/auth/login')
         .then((response) => {
           window.open(response.data.redirect_url, '_blank')
           // 开启一个新页面来进行验证
@@ -88,11 +88,11 @@ export default {
     },
     async checkLoginStatus () {
       try {
-        const response = await this.$http.get('http://127.0.0.1:8000/api/auth/login_status')
+        const response = await this.$http.get('http://localhost:8000/api/auth/login_status')
         if (response.data.is_login === true) {
           this.$store.state.userInfo.id = response.data.usr_id
           this.$store.state.userInfo.username = response.data.usr_name
-          this.$router.push({ name: 'index' })
+          this.$router.push('/Index')
         } else {
           console.error('OAuth failed:', response.data.message)
         }

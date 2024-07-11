@@ -5,7 +5,7 @@
     <div class="game-list">
       <el-row justify="space-evenly">
         <el-col :xs="24" :sm="12" :md="8" :lg="8" :xl="8" v-for="(item, index) of gameList" :key="index">
-          <game-item :title="item.title" :intro="item.intro" :path="item.path"></game-item>
+          <game-item :title="item.title" :intro="item.intro" :path="item.path" :icon="item.icon"></game-item>
         </el-col>
       </el-row>
     </div>

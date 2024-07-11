@@ -96,6 +96,10 @@ DATABASES = {
 ```
 python manage.py makemigrations
 ```
+## ！！！！！！如若显示无更改，请加上以下加上后缀的迁移！！！！！！
+```
+python manage.py makemigrations backend
+```
 该语句会根据models.py中编写的模型，自动生成可以被应用与数据库的迁移文件。
 需要理解的是，这个models.py中的内容最开始是有俊儒的已经创建好表现的数据库自动生成的，但后期雄哥在编写后端时已经对其做出了修改，这时候我们实际上执行的是一个反迁。
 即我们会把最新的数据库根据models.py复原出来，因此只需要你们新建一个空数据库就可以了。

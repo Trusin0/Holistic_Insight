@@ -5,6 +5,7 @@ from django.views.decorators.http import require_http_methods
 from django.conf import settings
 import backend.models as models
 from django.utils import timezone
+from datetime import datetime, timedelta
 
 # Create your views here.
 
@@ -75,7 +76,196 @@ def save_game_data(request):
         return schulte_save(request)
     elif game_name == 'react':
         return react_save(request)
-    
+    elif game_name == 'figureMemory':
+        return figureMemory_save(request)
+    elif game_name == 'number':
+        return number_save(request)
+    elif game_name == 'color':
+        return color_save(request)
+    elif game_name == 'aim':
+        return aim_save(request)
+    elif game_name == 'MBTI':
+        return MBTI_save(request)
+
+def MBTI_save(request):
+    try:
+        # 测试时使用GET请求
+        print(request.GET)
+        mbti_type = request.GET.get('mbti_type')
+        play_time = request.GET.get('play_time')
+        usr_name = request.GET.get('usr_name')
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=400)
+
+    try:
+        user = models.Usr.objects.get(usr_name=usr_name)
+    except models.Usr.DoesNotExist:
+        return JsonResponse({'error': 'User not found'}, status=404)
+
+        # 确认 play_time 是时间戳，并将其转换为整数
+    timestamp = int(play_time)
+
+    # 将时间戳转换为秒（通常时间戳是毫秒）
+    timestamp /= 1000
+
+    # 将时间戳转换为 datetime 对象
+    play_time_dt = datetime.fromtimestamp(timestamp)
+
+    # 将 datetime 对象转换为日期字符串
+    formatted_play_time = play_time_dt.strftime('%Y-%m-%d')
+
+    print(formatted_play_time)
+    print(mbti_type)
+    user.MBTI_type = mbti_type
+    try:
+        user.save()
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
+
+    return JsonResponse({'message': 'Save successful'})
+
+def aim_save(request):
+    try:
+        # 测试时使用GET请求
+        print(request.GET)
+        average_time = float(request.GET.get('average_time'))
+        play_time = request.GET.get('play_time')
+        usr_name = request.GET.get('usr_name')
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=400)
+
+    try:
+        user = models.Usr.objects.get(usr_name=usr_name)
+    except models.Usr.DoesNotExist:
+        return JsonResponse({'error': 'User not found'}, status=404)
+
+        # 确认 play_time 是时间戳，并将其转换为整数
+    timestamp = int(play_time)
+
+    # 将时间戳转换为秒（通常时间戳是毫秒）
+    timestamp /= 1000
+
+    # 将时间戳转换为 datetime 对象
+    play_time_dt = datetime.fromtimestamp(timestamp)
+
+    # 将 datetime 对象转换为日期字符串
+    formatted_play_time = play_time_dt.strftime('%Y-%m-%d')
+    print(formatted_play_time)
+
+    aim = models.Aim(usr=user, average_time=average_time, play_time=formatted_play_time)
+    try:
+        aim.save()
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
+
+    return JsonResponse({'message': 'Save successful'})
+def color_save(request):
+    try:
+        # 测试时使用GET请求
+        print(request.GET)
+        level = float(request.GET.get('level'))
+        play_time = request.GET.get('play_time')
+        usr_name = request.GET.get('usr_name')
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=400)
+
+    try:
+        user = models.Usr.objects.get(usr_name=usr_name)
+    except models.Usr.DoesNotExist:
+        return JsonResponse({'error': 'User not found'}, status=404)
+
+        # 确认 play_time 是时间戳，并将其转换为整数
+    timestamp = int(play_time)
+
+    # 将时间戳转换为秒（通常时间戳是毫秒）
+    timestamp /= 1000
+
+    # 将时间戳转换为 datetime 对象
+    play_time_dt = datetime.fromtimestamp(timestamp)
+
+    # 将 datetime 对象转换为日期字符串
+    formatted_play_time = play_time_dt.strftime('%Y-%m-%d')
+    print(formatted_play_time)
+
+    color = models.Color(usr=user, level=level, play_time=formatted_play_time)
+    try:
+        color.save()
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
+
+    return JsonResponse({'message': 'Save successful'})
+
+def figureMemory_save(request):
+    try:
+        # 测试时使用GET请求
+        print(request.GET)
+        level = float(request.GET.get('level'))
+        play_time = request.GET.get('play_time')
+        usr_name = request.GET.get('usr_name')
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=400)
+
+    try:
+        user = models.Usr.objects.get(usr_name=usr_name)
+    except models.Usr.DoesNotExist:
+        return JsonResponse({'error': 'User not found'}, status=404)
+
+        # 确认 play_time 是时间戳，并将其转换为整数
+    timestamp = int(play_time)
+
+    # 将时间戳转换为秒（通常时间戳是毫秒）
+    timestamp /= 1000
+
+    # 将时间戳转换为 datetime 对象
+    play_time_dt = datetime.fromtimestamp(timestamp)
+
+    # 将 datetime 对象转换为日期字符串
+    formatted_play_time = play_time_dt.strftime('%Y-%m-%d')
+    print(formatted_play_time)
+
+    chimpanzee = models.Chimpanzee(usr=user, level=level, play_time=formatted_play_time)
+    try:
+        chimpanzee.save()
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
+
+    return JsonResponse({'message': 'Save successful'})
+
+def number_save(request):
+    try:
+        # 测试时使用GET请求
+        print(request.GET)
+        level = float(request.GET.get('level'))
+        play_time = request.GET.get('play_time')
+        usr_name = request.GET.get('usr_name')
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=400)
+
+    try:
+        user = models.Usr.objects.get(usr_name=usr_name)
+    except models.Usr.DoesNotExist:
+        return JsonResponse({'error': 'User not found'}, status=404)
+
+        # 确认 play_time 是时间戳，并将其转换为整数
+    timestamp = int(play_time)
+
+    # 将时间戳转换为秒（通常时间戳是毫秒）
+    timestamp /= 1000
+
+    # 将时间戳转换为 datetime 对象
+    play_time_dt = datetime.fromtimestamp(timestamp)
+
+    # 将 datetime 对象转换为日期字符串
+    formatted_play_time = play_time_dt.strftime('%Y-%m-%d')
+    print(formatted_play_time)
+
+    number = models.Number(usr=user, level=level, play_time=formatted_play_time)
+    try:
+        number.save()
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
+
+    return JsonResponse({'message': 'Save successful'})
 
 def react_save(request):
     try:
@@ -91,8 +281,21 @@ def react_save(request):
         user = models.Usr.objects.get(usr_name=usr_name)
     except models.Usr.DoesNotExist:
         return JsonResponse({'error': 'User not found'}, status=404)
-    
-    react = models.React(usr=user, react_time=react_time, play_time=play_time)
+
+        # 确认 play_time 是时间戳，并将其转换为整数
+    timestamp = int(play_time)
+
+    # 将时间戳转换为秒（通常时间戳是毫秒）
+    timestamp /= 1000
+
+    # 将时间戳转换为 datetime 对象
+    play_time_dt = datetime.fromtimestamp(timestamp)
+
+    # 将 datetime 对象转换为日期字符串
+    formatted_play_time = play_time_dt.strftime('%Y-%m-%d')
+    print(formatted_play_time)
+
+    react = models.React(usr=user, react_time=react_time, play_time=formatted_play_time)
     try:
         react.save()
     except Exception as e:
@@ -109,17 +312,36 @@ def schulte_save(request):
         cost = float(request.GET.get('cost'))
         play_time = request.GET.get('play_time')
         usr_name = request.GET.get('usr_name')
+        print('Parse request success!')
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=400)
     
     try:
         user = models.Usr.objects.get(usr_name=usr_name)
+        print('user get success!')
     except models.Usr.DoesNotExist:
         return JsonResponse({'error': 'User not found'}, status=404)
-    
-    schulte = models.Schulte(usr=user, block_size=block_size, error_times=error_times, cost=cost, play_time=play_time)
+
+    # 确认 play_time 是时间戳，并将其转换为整数
+    timestamp = int(play_time)
+
+    # 将时间戳转换为秒（通常时间戳是毫秒）
+    timestamp /= 1000
+
+    # 将时间戳转换为 datetime 对象
+    play_time_dt = datetime.fromtimestamp(timestamp)
+
+    # 将 datetime 对象转换为日期字符串
+    formatted_play_time = play_time_dt.strftime('%Y-%m-%d')
+    print(formatted_play_time)
+
+    schulte = models.Schulte(usr=user, block_size=block_size, error_times=error_times, cost=cost, play_time=formatted_play_time)
+
+    # schulte = models.Schulte(usr=user, block_size=block_size, error_times=error_times, cost=cost)
+    print('schulte get success!')
     try:
         schulte.save()
+        print('Schulte save successful!')
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
     

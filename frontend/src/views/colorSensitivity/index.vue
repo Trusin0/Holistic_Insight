@@ -23,6 +23,7 @@
       <p>游戏结束</p>
       <p>你的分数是: {{ score }}</p>
       <button @click="resetGame()">重新开始</button>
+      <button @click="saveScore">保存分数</button>
     </div>
   </div>
 </template>
@@ -114,6 +115,19 @@ export default {
           clearInterval(this.interval)
         }
       }, 1000)
+    },
+    saveScore () {
+      const currentTime = new Date().getTime() // 记录当前时间
+      this.$http.get('http://127.0.0.1:8000/api/game/save_game_data?game_name=color&level=' + (this.score) + '&usr_name=' + this.$store.state.userInfo.username + '&play_time=' + currentTime)
+        .then(response => {
+          var res = JSON.parse(response.bodyText)
+          if (res.message === 'Save successful') {
+            this.$message.success('新增成绩成功')
+          } else {
+            this.$message.error('新增成绩失败，请重试')
+            console.log(res.message)
+          }
+        })
     }
   }
 }

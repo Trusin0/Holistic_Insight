@@ -27,6 +27,7 @@
     <div v-if="stage === 2" class="game-over-screen">
       你用时: {{ timeElapsed }}秒
       <button @click="resetGame">再来一次</button>
+      <button @click="saveScore">保存成绩</button>
     </div>
   </div>
 </template>
@@ -108,6 +109,19 @@ export default {
     },
     resetGame () {
       this.stage = 0
+    },
+    saveScore () {
+      const currentTime = new Date().getTime() // 记录当前时间
+      this.$http.get('http://127.0.0.1:8000/api/game/save_game_data?game_name=schulte&error_times=0&block_size=4&cost=' + (this.timeElapsed) + '&usr_name=' + this.$store.state.userInfo.username + '&play_time=' + currentTime)
+        .then(response => {
+          var res = JSON.parse(response.bodyText)
+          if (res.message === 'Save successful') {
+            this.$message.success('新增成绩成功')
+          } else {
+            this.$message.error('新增成绩失败，请重试')
+            console.log(res.message)
+          }
+        })
     }
   }
 }

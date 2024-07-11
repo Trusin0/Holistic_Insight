@@ -101,7 +101,17 @@ export default {
       }
     },
     saveScore () {
-      // 保存分数逻辑
+      const currentTime = new Date().getTime() // 记录当前时间
+      this.$http.get('http://127.0.0.1:8000/api/game/save_game_data?game_name=aim&average_time=' + (this.averageTime) + '&usr_name=' + this.$store.state.userInfo.username + '&play_time=' + currentTime)
+        .then(response => {
+          var res = JSON.parse(response.bodyText)
+          if (res.message === 'Save successful') {
+            this.$message.success('新增成绩成功')
+          } else {
+            this.$message.error('新增成绩失败，请重试')
+            console.log(res.message)
+          }
+        })
     }
   }
 }
