@@ -24,6 +24,7 @@
         <p>测试完成</p>
         <p>你的性格类型是: {{ finalResult }}</p>
         <button @click="reset" class="button">重新测试</button>
+        <button @click="saveScore" class="button">保存记录</button>
       </div>
     </div>
   </div>
@@ -99,6 +100,19 @@ export default {
       console.log(jsonData)
       console.log(jsonData.questionSets)
       console.log(jsonData.questionSets[0])
+    },
+    saveScore () {
+      const currentTime = new Date().getTime() // 记录当前时间
+      this.$http.get('http://127.0.0.1:8000/api/game/save_game_data?game_name=MBTI&mbti_type=' + (this.finalResult) + '&usr_name=' + this.$store.state.userInfo.username + '&play_time=' + currentTime)
+        .then(response => {
+          var res = JSON.parse(response.bodyText)
+          if (res.message === 'Save successful') {
+            this.$message.success('已更新个人信息')
+          } else {
+            this.$message.error('更新个人信息失败，请重试')
+            console.log(res.message)
+          }
+        })
     }
   }
 }

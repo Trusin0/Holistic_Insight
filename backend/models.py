@@ -147,6 +147,7 @@ class Usr(models.Model):
     usr_id = models.AutoField(primary_key=True)
     pass_field = models.CharField(db_column='pass', max_length=100, blank=True, null=True)  # Field renamed because it was a Python reserved word.
     usr_name = models.CharField(max_length=20, blank=True, null=True)
+    MBTI_type = models.CharField(max_length=10, blank=True, null=True)
 
     class Meta:
         managed = True

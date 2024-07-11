@@ -35,8 +35,8 @@
       <h2 v-else>数字序列错误!</h2>
       <p>正确序列: {{ correctNumbers }}</p>
       <p>你的答案: {{ userInput }}</p>
-      <button @click="restartGame" class="restart-button">Try Again</button>
-      <button @click="saveScore" class="save-button">Save Score</button>
+      <button @click="restartGame" class="restart-button">重新开始</button>
+      <button @click="saveScore" class="save-button">保存分数</button>
     </div>
 
     <div v-show="gameState === 'level-up'" class="level-up-screen">
@@ -142,10 +142,19 @@ export default {
       clearTimeout(this.timer);
       this.elapsedTime = 0;
     },
-    saveScore() {
-      // 实现保存分数的逻辑
-      alert('Score saved!');
-    },
+    saveScore () {
+      const currentTime = new Date().getTime() // 记录当前时间
+      this.$http.get('http://127.0.0.1:8000/api/game/save_game_data?game_name=number&level=' + (this.level) + '&usr_name=' + this.$store.state.userInfo.username + '&play_time=' + currentTime)
+        .then(response => {
+          var res = JSON.parse(response.bodyText)
+          if (res.message === 'Save successful') {
+            this.$message.success('新增成绩成功')
+          } else {
+            this.$message.error('新增成绩失败，请重试')
+            console.log(res.message)
+          }
+        })
+    }
   },
 };
 </script>
