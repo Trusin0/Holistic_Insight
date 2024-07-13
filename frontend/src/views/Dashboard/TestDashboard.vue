@@ -44,6 +44,7 @@
           { name: 'mbti', score: null, percentile: null },
           { name: 'aim-test', score: null, percentile: null },
           { name: 'color-sensitivity', score: null, percentile: null },
+          { name: 'figure-memory', score: null, percentile: null },
         ]
       };
     }
