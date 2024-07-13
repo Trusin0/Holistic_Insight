@@ -416,17 +416,27 @@ def get_reaction_times(user_id):
     average_user_reaction_times = list(models.React.objects.values_list('react_time', flat=True))
     return user_reaction_times, average_user_reaction_times
 
-def plot_reaction_time(request, user_id):
+
+def plot_reaction_time(request, test_type, user_id):
     # 检索用户
     user = models.get_object_or_404(models.Usr, pk=user_id)
     
-    # 获取反应时间数据
-    user_reaction_times, average_user_reaction_times = get_reaction_times(user_id)
+    # # 获取反应时间数据
+    # user_reaction_times, average_user_reaction_times = get_reaction_times(user_id)
 
-    # 生成图表
+    # # 生成图表
+    # plt.figure(figsize=(14, 6))
+    # sns.kdeplot(average_user_reaction_times, bw_adjust=0.5, color='lightblue', fill=True, label='Average users', linewidth=1)
+    # sns.kdeplot(user_reaction_times, bw_adjust=0.5, color='blue', fill=True, label=user.usr_name, linewidth=2)
+
+    user_reaction_times = np.random.normal(loc=250, scale=20, size=100)
+    average_user_reaction_times = np.random.normal(loc=250, scale=50, size=1000)
+
+    # 创建图表
     plt.figure(figsize=(14, 6))
     sns.kdeplot(average_user_reaction_times, bw_adjust=0.5, color='lightblue', fill=True, label='Average users', linewidth=1)
-    sns.kdeplot(user_reaction_times, bw_adjust=0.5, color='blue', fill=True, label=user.usr_name, linewidth=2)
+    sns.kdeplot(user_reaction_times, bw_adjust=0.5, color='blue', fill=True, label='alica', linewidth=2)
+
     plt.legend(loc='upper right')
     plt.title('Reaction Time Statistics', fontsize=16)
     plt.xlabel('Time (ms)', fontsize=14)

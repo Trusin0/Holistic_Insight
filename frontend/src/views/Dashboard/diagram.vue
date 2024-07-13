@@ -1,7 +1,8 @@
 <template>
   <div>
     <h1>Test Details for {{ testName }}</h1>
-    <img :src="plotUrl" alt="Test Plot">
+    <!-- 图表显示 -->
+    <img :src="imageUrl" alt="Test Plot" v-if="imageUrl">
   </div>
 </template>
 
@@ -11,30 +12,28 @@ export default {
     testName: {
       type: String,
       required: true
+    },
+    userId: {
+      type: Number,
+      default: 1 // 默认用户ID，实际应用中应该是动态获取
     }
   },
   computed: {
-    plotUrl() {
-      // 假设 Django 服务器运行在 localhost:8000
-      // 需要确保 testName 是一个有效的测试类型
-      return `http://127.0.0.1:8000/plot/${this.testName}/${this.userId}/`;
+    imageUrl() {
+      return `http://localhost:8000/plot/${this.testName}/${this.userId}/`;
     }
-  },
-  data() {
-    return {
-      // 假设用户ID是已知的，或者可以通过某种方式获得
-      userId: 1
-    };
-  },
-  mounted() {
-    console.log('Fetching plot for test:', this.testName);
   }
 }
 </script>
+
 
 <style scoped>
 h1 {
   color: #333;
   margin-bottom: 20px;
+}
+img {
+  width: 100%; 
+  height: auto;
 }
 </style>

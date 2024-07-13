@@ -10,4 +10,5 @@ urlpatterns = [
     path('game/save_game_data', views.save_game_data, name='save_game_data'),
     path('game/schulte/save', views.schulte_save, name='schulte_save'),
     path('check_session/', views.check_session, name='check_session'),
+    path('plot/<str:test_type>/<int:user_id>/', views.plot_reaction_time, name='plot_test_data'),
 ]
