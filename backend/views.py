@@ -418,8 +418,9 @@ def get_reaction_times(user_id):
 
 
 def plot_reaction_time(request, test_type, user_id):
+
     # 检索用户
-    user = models.get_object_or_404(models.Usr, pk=user_id)
+    # user = models.get_object_or_404(models.Usr, pk=user_id)
     
     # # 获取反应时间数据
     # user_reaction_times, average_user_reaction_times = get_reaction_times(user_id)

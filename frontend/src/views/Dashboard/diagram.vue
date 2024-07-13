@@ -20,7 +20,7 @@ export default {
   },
   computed: {
     imageUrl() {
-      return `http://localhost:8000/plot/${this.testName}/${this.userId}/`;
+      return `http://localhost:8000/api/plot/${this.testName}/${this.userId}/`;
     }
   }
 }
