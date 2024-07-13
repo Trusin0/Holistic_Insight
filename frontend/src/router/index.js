@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/views/index/Index.vue'
+import Diagram from '../views/Dashboard/diagram.vue'
 
 Vue.use(Router)
 
@@ -49,10 +50,11 @@ export default new Router({
       component: () => import(`@/views/Dashboard/Index.vue`)
     },
     {
-      path: '/data',
-      name: 'digram',
+      path: '/data/:testName',
+      name: 'data',
       component: () => import(`@/views/Dashboard/diagram.vue`),
       props: true
     }
+
   ]
 })

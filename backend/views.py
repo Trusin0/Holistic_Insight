@@ -1,11 +1,16 @@
 import requests
-from django.http import JsonResponse
-from django.shortcuts import render, redirect
+from django.http import JsonResponse, HttpResponse
+from django.shortcuts import render, redirect,get_object_or_404
 from django.views.decorators.http import require_http_methods
 from django.conf import settings
 import backend.models as models
 from django.utils import timezone
 from datetime import datetime, timedelta
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+import io
 
 # Create your views here.
 
@@ -404,3 +409,38 @@ def oauth(request):
     response.set_cookie('session_key', session_key,max_age=604800)
     
     return response
+
+
+def get_reaction_times(user_id):
+    user_reaction_times = list(models.React.objects.filter(usr_id=user_id).values_list('react_time', flat=True))
+    average_user_reaction_times = list(models.React.objects.values_list('react_time', flat=True))
+    return user_reaction_times, average_user_reaction_times
+
+def plot_reaction_time(request, user_id):
+    # 检索用户
+    user = models.get_object_or_404(models.Usr, pk=user_id)
+    
+    # 获取反应时间数据
+    user_reaction_times, average_user_reaction_times = get_reaction_times(user_id)
+
+    # 生成图表
+    plt.figure(figsize=(14, 6))
+    sns.kdeplot(average_user_reaction_times, bw_adjust=0.5, color='lightblue', fill=True, label='Average users', linewidth=1)
+    sns.kdeplot(user_reaction_times, bw_adjust=0.5, color='blue', fill=True, label=user.usr_name, linewidth=2)
+    plt.legend(loc='upper right')
+    plt.title('Reaction Time Statistics', fontsize=16)
+    plt.xlabel('Time (ms)', fontsize=14)
+    plt.ylabel('Density', fontsize=14)
+    plt.xticks(np.arange(0, 1001, 25), rotation=45, fontsize=12)
+    plt.yticks(fontsize=12)
+    sns.despine(left=True)
+    plt.grid(axis='x', linestyle='--', alpha=0.7)
+    plt.tight_layout()
+
+    # 将图表保存到内存中
+    buf = io.BytesIO()
+    plt.savefig(buf, format='png')
+    plt.close()
+    buf.seek(0)
+
+    return HttpResponse(buf, content_type='image/png')

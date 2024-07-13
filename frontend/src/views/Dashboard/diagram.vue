@@ -1,104 +1,40 @@
 <template>
-    <div class="test-detail">
-      <div class="score">
-        <h2>{{ testName | capitalize }}</h2>
-        <p>{{ data.points.toFixed(2) }} points</p>
-        <p>{{ data.percentile.toFixed(2) }}% percentile</p>
-        <a @click="play" class="play-button">Play</a>
-      </div>
-      <div class="charts">
-        <h3>{{ testName | capitalize }} Statistics</h3>
-        <img :src="plotUrl" alt="Statistics Plot">
-      </div>
-    </div>
-  </template>
-  
-  <script>
-  export default {
-    props: {
-      testName: String
-    },
-    data() {
-      return {
-        data: {
-          points: 0,
-          percentile: 0
-        },
-        plotUrl: ''
-      };
-    },
-    mounted() {
-      this.fetchData();
-      this.fetchPlot();
-    },
-    methods: {
-      fetchData() {
-        fetch(`http://127.0.0.1:5000/api/${this.testName}`)
-          .then(response => response.json())
-          .then(data => {
-            this.data.points = data.points;
-            this.data.percentile = data.percentile;
-          });
-      },
-      fetchPlot() {
-        this.plotUrl = `http://127.0.0.1:5000/plot/${this.testName}`;
-      },
-      play() {
-        window.location.href = `/play/${this.testName}`;
-      }
-    },
-    filters: {
-      capitalize(value) {
-        if (!value) return '';
-        value = value.toString();
-        return value.charAt(0).toUpperCase() + value.slice(1);
-      }
+  <div>
+    <h1>Test Details for {{ testName }}</h1>
+    <img :src="plotUrl" alt="Test Plot">
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    testName: {
+      type: String,
+      required: true
     }
+  },
+  computed: {
+    plotUrl() {
+      // 假设 Django 服务器运行在 localhost:8000
+      // 需要确保 testName 是一个有效的测试类型
+      return `http://127.0.0.1:8000/plot/${this.testName}/${this.userId}/`;
+    }
+  },
+  data() {
+    return {
+      // 假设用户ID是已知的，或者可以通过某种方式获得
+      userId: 1
+    };
+  },
+  mounted() {
+    console.log('Fetching plot for test:', this.testName);
   }
-  </script>
-  
-  <style scoped>
-  .test-detail {
-    font-family: Arial, sans-serif;
-  }
-  
-  .score {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .score h2 {
-    margin: 0;
-    font-size: 2em;
-  }
-  
-  .score p {
-    margin: 5px 0;
-    font-size: 1.5em;
-  }
-  
-  .play-button {
-    color: white;
-    background-color: #3498db;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  
-  .charts {
-    margin-top: 20px;
-  }
-  
-  .charts h3 {
-    text-align: center;
-    margin: 20px 0;
-  }
-  
-  .charts img {
-    display: block;
-    margin: 0 auto;
-    max-width: 100%;
-  }
-  </style>
-  
+}
+</script>
+
+<style scoped>
+h1 {
+  color: #333;
+  margin-bottom: 20px;
+}
+</style>
