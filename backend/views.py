@@ -449,17 +449,17 @@ def get_data(user_id, test_type):
 def show_average(request, test_type, user_id):
 
     # 获取反应时间数据
-    usr_data, average_data = get_data(user_id, test_type)
+    user_data, average_data = get_data(user_id, test_type)
 
     # 创建图表
     plt.figure(figsize=(10, 5))
     sns.kdeplot(average_data, bw_adjust=0.5, color='lightblue', fill=True, label='Average users', linewidth=1)
-    sns.kdeplot(usr_data, bw_adjust=0.5, color='blue', fill=True, label='User Data', linewidth=2)
+    sns.kdeplot(user_data, bw_adjust=0.5, color='blue', fill=True, label='User Data', linewidth=2)
 
     plt.legend(loc='upper right')
-    plt.title('average of' + test_type, fontsize=16)
-    plt.xlabel('Time (ms)', fontsize=14)
-    plt.ylabel('Density', fontsize=14)
+    plt.title('average of ' + test_type, fontsize=16)
+    plt.xlabel('ms', fontsize=14)
+    plt.ylabel('percentage', fontsize=14)
     plt.xticks(np.arange(0, 1001, 25), rotation=45, fontsize=12)
     plt.yticks(fontsize=12)
     sns.despine(left=True)
@@ -476,15 +476,14 @@ def show_average(request, test_type, user_id):
 
 def show_history(request, test_type, user_id):
 
-
     user_data, average_data = get_data(user_id, test_type)
     plt.figure(figsize=(10, 5))
-    sns.lineplot(x=np.arange(len(user_data)), y=user_data, marker='o', color='blue', label='Level')
+    sns.lineplot(x=np.arange(len(user_data)), y=user_data, marker='o', color='blue')
 
     plt.fill_between(np.arange(len(user_data)), user_data, color='lightblue', alpha=0.5)
-    plt.title('history of' + test_type, fontsize=16)
-    plt.xlabel('Index', fontsize=14)
-    plt.ylabel('Level', fontsize=14)
+    plt.title('history of ' + test_type, fontsize=16)
+    plt.xlabel('games', fontsize=14)
+    plt.ylabel('ms', fontsize=14)
 
     # 设置横轴刻度间隔
     interval = 10  # 每隔10个点显示一个刻度标签
