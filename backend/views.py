@@ -417,24 +417,31 @@ def get_data(request, user_id, test_type):
     if test_type == 'reaction_time':
         usr_data = list(models.React.objects.filter(usr_id=user_id).values_list('react_time', flat=True))
         average_data = list(models.React.objects.values_list('react_time', flat=True))
+        return usr_data, average_data
     elif test_type == 'number_memory':
         usr_data = list(models.Number.objects.filter(usr_id=user_id).values_list('level', flat=True))
         average_data = list(models.Number.objects.values_list('level', flat=True))
+        return usr_data, average_data
     elif test_type == 'schulte_table':
         usr_data = list(models.Schulte.objects.filter(usr_id=user_id).values_list('cost', flat=True))
         average_data = list(models.Schulte.objects.values_list('cost', flat=True))
+        return usr_data, average_data
     elif test_type == 'figure_memory':
         usr_data = list(models.Chimpanzee.objects.filter(usr_id=user_id).values_list('level', flat=True))
         average_data = list(models.Chimpanzee.objects.values_list('level', flat=True))
+        return usr_data, average_data
     elif test_type == 'color_sence':
         usr_data = list(models.Color.objects.filter(usr_id=user_id).values_list('level', flat=True))
         average_data = list(models.Color.objects.values_list('level', flat=True))
+        return usr_data, average_data
     elif test_type == 'aim_test':
         usr_data = list(models.Aim.objects.filter(usr_id=user_id).values_list('average_time', flat=True))
         average_data = list(models.Aim.objects.values_list('average_time', flat=True))
+        return usr_data, average_data
     elif test_type == 'MBTI_test':
         usr_data = list(models.Usr.objects.filter(usr_id=user_id).values_list('MBTI_type', flat=True))
         average_data = list(models.Usr.objects.values_list('MBTI_type', flat=True))
+        return usr_data, average_data
     else:
         return None, None
 
