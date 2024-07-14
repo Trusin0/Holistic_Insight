@@ -413,11 +413,37 @@ def oauth(request):
     return response
 
 # 直接获得所有数据以及用户平均
-def get_data(request, user_id, test_type):
-    
-    usr_data = list(models.React.objects.filter(usr_id=user_id).values_list('react_time', flat=True))
-    average_data = list(models.React.objects.values_list('react_time', flat=True))
-    return usr_data, average_data
+def get_data(user_id, test_type):
+    if test_type == 'reaction-time':
+        usr_data = list(models.React.objects.filter(usr_id=user_id).values_list('react_time', flat=True))
+        average_data = list(models.React.objects.values_list('react_time', flat=True))
+        return usr_data, average_data
+    elif test_type == 'number-memory':
+        usr_data = list(models.Number.objects.filter(usr_id=user_id).values_list('level', flat=True))
+        average_data = list(models.Number.objects.values_list('level', flat=True))
+        return usr_data, average_data
+    elif test_type == 'schulte-table':
+        usr_data = list(models.Schulte.objects.filter(usr_id=user_id).values_list('cost', flat=True))
+        average_data = list(models.Schulte.objects.values_list('cost', flat=True))
+        return usr_data, average_data
+    elif test_type == 'figure-memory':
+        usr_data = list(models.Chimpanzee.objects.filter(usr_id=user_id).values_list('level', flat=True))
+        average_data = list(models.Chimpanzee.objects.values_list('level', flat=True))
+        return usr_data, average_data
+    elif test_type == 'color-sensitivity':
+        usr_data = list(models.Color.objects.filter(usr_id=user_id).values_list('level', flat=True))
+        average_data = list(models.Color.objects.values_list('level', flat=True))
+        return usr_data, average_data
+    elif test_type == 'aim-test':
+        usr_data = list(models.Aim.objects.filter(usr_id=user_id).values_list('average_time', flat=True))
+        average_data = list(models.Aim.objects.values_list('average_time', flat=True))
+        return usr_data, average_data
+    elif test_type == 'MBTI-test':
+        usr_data = list(models.Usr.objects.filter(usr_id=user_id).values_list('MBTI_type', flat=True))
+        average_data = list(models.Usr.objects.values_list('MBTI_type', flat=True))
+        return usr_data, average_data
+    else:
+        return None, None
 
 
 def show_average(request, test_type, user_id):
@@ -425,7 +451,7 @@ def show_average(request, test_type, user_id):
     # # 检索用户
     # user = models.get_object_or_404(models.Usr, pk=user_id)
     
-    # # 获取反应时间数据
+    # 获取反应时间数据
     # usr_data, average_data = get_data(user_id, test_type)
 
     usr_data = np.random.normal(loc=250, scale=20, size=100)
@@ -464,8 +490,6 @@ def show_average(request, test_type, user_id):
 
 
 def show_history(request, test_type, user_id):
-    # # 检索用户
-    user = models.get_object_or_404(models.Usr, pk=user_id)
     
     # # 获取反应时间数据
     user_data, average_data = get_data(user_id, test_type)
