@@ -13,29 +13,29 @@
   </div>
 </template>
 
-
 <script>
+import { mapState } from 'vuex';
+
 export default {
-  props: {
-    testName: {
-      type: String,
-      required: true
-    },
-    userId: {
-      type: Number,
-      default: 1 // 默认用户ID，实际应用中应该是动态获取
-    }
-  },
   computed: {
+    ...mapState({
+      userId: state => state.userInfo.id,
+    }),
     average_url() {
       return `http://localhost:8000/api/plot/${this.testName}/${this.userId}/`;
     },
     history_url() {
-      return `http://localhost:8000/api/plot/${this.testName}/${this.userId}/history/`;
+      return `http://localhost:8000/api/plots/${this.testName}/${this.userId}/`;
+    }
+  },
+  props: {
+    testName: {
+      type: String,
+      required: true
     }
   }
 }
-</script>
+// <!-- </script> -->
 
 
 <style scoped>

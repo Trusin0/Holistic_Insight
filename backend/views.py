@@ -413,7 +413,11 @@ def oauth(request):
     return response
 
 # 直接获得所有数据以及用户平均
+<<<<<<< Updated upstream
 def get_data(request, user_id, test_type):
+=======
+def get_data(user_id, test_type):
+>>>>>>> Stashed changes
     if test_type == 'reaction_time':
         usr_data = list(models.React.objects.filter(usr_id=user_id).values_list('react_time', flat=True))
         average_data = list(models.React.objects.values_list('react_time', flat=True))
@@ -448,11 +452,8 @@ def get_data(request, user_id, test_type):
 
 def show_average(request, test_type, user_id):
 
-    # # 检索用户
-    # user = models.get_object_or_404(models.Usr, pk=user_id)
-    
-    # # 获取反应时间数据
-    # usr_data, average_data = get_data(user_id, test_type)
+    # 获取反应时间数据
+    usr_data, average_data = get_data(user_id, test_type)
 
     usr_data = np.random.normal(loc=250, scale=20, size=100)
     average_data = np.random.normal(loc=250, scale=50, size=1000)
@@ -482,6 +483,7 @@ def show_average(request, test_type, user_id):
 
 
 def show_history(request, test_type, user_id):
+<<<<<<< Updated upstream
     # # 检索用户
     # user = models.get_object_or_404(models.Usr, pk=user_id)
     
@@ -489,10 +491,22 @@ def show_history(request, test_type, user_id):
     # user_data, average_data = get_data(user_id, test_type)
 
     user_data = np.random.normal(loc=250, scale=20, size=100)
+=======
+    user_data, average_data = get_data(user_id, test_type)
+
+
+    user_data = np.random.normal(loc=250, scale=20, size=100)
+    
+>>>>>>> Stashed changes
     # 创建图表
     plt.figure(figsize=(14, 6))
+    print('Check Point 1.')
     sns.lineplot(x=np.arange(len(user_data)), y=user_data, marker='o', color='blue', label='Level')
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     # 填充区域
     plt.fill_between(np.arange(len(user_data)), user_data, color='lightblue', alpha=0.5)
 
@@ -510,14 +524,27 @@ def show_history(request, test_type, user_id):
     # 美化图表
     sns.despine(left=True)
     plt.grid(axis='y', linestyle='--', alpha=0.7)
+<<<<<<< Updated upstream
 
     # 显示图表
     plt.tight_layout()
 
+=======
+    print('Check Point 2.')
+    # 显示图表
+    # plt.tight_layout()
+
+    print('Check Point 3.')
+>>>>>>> Stashed changes
     # 将图表保存到内存中
     buf = io.BytesIO()
     plt.savefig(buf, format='png')
     plt.close()
     buf.seek(0)
 
+<<<<<<< Updated upstream
+=======
+    print('Check Point 4.')
+
+>>>>>>> Stashed changes
     return HttpResponse(buf.getvalue(), content_type='image/png')

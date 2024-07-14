@@ -33,8 +33,12 @@
     data() {
       return {
         user: {
+<<<<<<< Updated upstream
           username: 'alicaHKG41',
           joined: '23 hours ago',
+=======
+          username: this.$store.state.userInfo.username,
+>>>>>>> Stashed changes
           permalink: '#'
         },
         tests: [

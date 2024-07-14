@@ -1,4 +1,4 @@
-<template>
+``<template>
     <div class="sequence-memory">
       <div class="score">
         <h2>{{ testName | capitalize }}</h2>
