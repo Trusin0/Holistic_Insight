@@ -486,15 +486,15 @@ def show_average(request, test_type, user_id):
 
     # print('Check Point 4.')
 
-    return HttpResponse(buf.getvalue(), content_type='image/png')
+    return HttpResponse(buf, content_type='image/png')
 
 
 def show_history(request, test_type, user_id):
     
     # # 获取反应时间数据
-    user_data, average_data = get_data(user_id, test_type)
+    # user_data, average_data = get_data(user_id, test_type)
 
-    # user_data = np.random.normal(loc=250, scale=20, size=100)
+    user_data = np.random.normal(loc=250, scale=20, size=100)
     # 创建图表
     plt.figure(figsize=(14, 6))
     sns.lineplot(x=np.arange(len(user_data)), y=user_data, marker='o', color='blue', label='Level')
@@ -534,4 +534,4 @@ def show_history(request, test_type, user_id):
 
     # print('Check Point 4.')
 
-    return HttpResponse(buf.getvalue(), content_type='image/png')
+    return HttpResponse(buf, content_type='image/png')
