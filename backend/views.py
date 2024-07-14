@@ -413,36 +413,32 @@ def oauth(request):
     return response
 
 # 直接获得所有数据以及用户平均
-<<<<<<< Updated upstream
-def get_data(request, user_id, test_type):
-=======
 def get_data(user_id, test_type):
->>>>>>> Stashed changes
-    if test_type == 'reaction_time':
+    if test_type == 'reaction-time':
         usr_data = list(models.React.objects.filter(usr_id=user_id).values_list('react_time', flat=True))
         average_data = list(models.React.objects.values_list('react_time', flat=True))
         return usr_data, average_data
-    elif test_type == 'number_memory':
+    elif test_type == 'number-memory':
         usr_data = list(models.Number.objects.filter(usr_id=user_id).values_list('level', flat=True))
         average_data = list(models.Number.objects.values_list('level', flat=True))
         return usr_data, average_data
-    elif test_type == 'schulte_table':
+    elif test_type == 'schulte-table':
         usr_data = list(models.Schulte.objects.filter(usr_id=user_id).values_list('cost', flat=True))
         average_data = list(models.Schulte.objects.values_list('cost', flat=True))
         return usr_data, average_data
-    elif test_type == 'figure_memory':
+    elif test_type == 'figure-memory':
         usr_data = list(models.Chimpanzee.objects.filter(usr_id=user_id).values_list('level', flat=True))
         average_data = list(models.Chimpanzee.objects.values_list('level', flat=True))
         return usr_data, average_data
-    elif test_type == 'color_sence':
+    elif test_type == 'color-sence':
         usr_data = list(models.Color.objects.filter(usr_id=user_id).values_list('level', flat=True))
         average_data = list(models.Color.objects.values_list('level', flat=True))
         return usr_data, average_data
-    elif test_type == 'aim_test':
+    elif test_type == 'aim-test':
         usr_data = list(models.Aim.objects.filter(usr_id=user_id).values_list('average_time', flat=True))
         average_data = list(models.Aim.objects.values_list('average_time', flat=True))
         return usr_data, average_data
-    elif test_type == 'MBTI_test':
+    elif test_type == 'MBTI-test':
         usr_data = list(models.Usr.objects.filter(usr_id=user_id).values_list('MBTI_type', flat=True))
         average_data = list(models.Usr.objects.values_list('MBTI_type', flat=True))
         return usr_data, average_data
@@ -455,8 +451,8 @@ def show_average(request, test_type, user_id):
     # 获取反应时间数据
     usr_data, average_data = get_data(user_id, test_type)
 
-    usr_data = np.random.normal(loc=250, scale=20, size=100)
-    average_data = np.random.normal(loc=250, scale=50, size=1000)
+    # usr_data = np.random.normal(loc=250, scale=20, size=100)
+    # average_data = np.random.normal(loc=250, scale=50, size=1000)
 
     # 创建图表
     plt.figure(figsize=(14, 6))
@@ -483,30 +479,18 @@ def show_average(request, test_type, user_id):
 
 
 def show_history(request, test_type, user_id):
-<<<<<<< Updated upstream
     # # 检索用户
     # user = models.get_object_or_404(models.Usr, pk=user_id)
     
-    # # 获取反应时间数据
-    # user_data, average_data = get_data(user_id, test_type)
-
-    user_data = np.random.normal(loc=250, scale=20, size=100)
-=======
+    # 获取反应时间数据
     user_data, average_data = get_data(user_id, test_type)
 
-
-    user_data = np.random.normal(loc=250, scale=20, size=100)
-    
->>>>>>> Stashed changes
+    # user_data = np.random.normal(loc=250, scale=20, size=100)
     # 创建图表
     plt.figure(figsize=(14, 6))
     print('Check Point 1.')
     sns.lineplot(x=np.arange(len(user_data)), y=user_data, marker='o', color='blue', label='Level')
 
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
     # 填充区域
     plt.fill_between(np.arange(len(user_data)), user_data, color='lightblue', alpha=0.5)
 
@@ -524,27 +508,17 @@ def show_history(request, test_type, user_id):
     # 美化图表
     sns.despine(left=True)
     plt.grid(axis='y', linestyle='--', alpha=0.7)
-<<<<<<< Updated upstream
-
-    # 显示图表
-    plt.tight_layout()
-
-=======
     print('Check Point 2.')
     # 显示图表
     # plt.tight_layout()
 
     print('Check Point 3.')
->>>>>>> Stashed changes
     # 将图表保存到内存中
     buf = io.BytesIO()
     plt.savefig(buf, format='png')
     plt.close()
     buf.seek(0)
 
-<<<<<<< Updated upstream
-=======
     print('Check Point 4.')
 
->>>>>>> Stashed changes
     return HttpResponse(buf.getvalue(), content_type='image/png')
