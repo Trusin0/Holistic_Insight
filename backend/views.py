@@ -461,7 +461,7 @@ def show_average(request, test_type, user_id):
     sns.kdeplot(usr_data, bw_adjust=0.5, color='blue', fill=True, label='User Data', linewidth=2)
 
     plt.legend(loc='upper right')
-    plt.title('Reaction Time Statistics', fontsize=16)
+    plt.title('average of' + test_type, fontsize=16)
     plt.xlabel('Time (ms)', fontsize=14)
     plt.ylabel('Density', fontsize=14)
     plt.xticks(np.arange(0, 1001, 25), rotation=45, fontsize=12)
@@ -479,19 +479,23 @@ def show_average(request, test_type, user_id):
 
 
 def show_history(request, test_type, user_id):
-    # # 获取反应时间数据
-    # user_data, average_data = get_data(user_id, test_type)
-
+    # 生成模拟数据
     user_data = np.random.normal(loc=250, scale=20, size=100)
 
     plt.figure(figsize=(10, 5))
     sns.lineplot(x=np.arange(len(user_data)), y=user_data, marker='o', color='blue', label='Level')
 
     plt.fill_between(np.arange(len(user_data)), user_data, color='lightblue', alpha=0.5)
-    plt.title('Recent Sequence Memory Results', fontsize=16)
+    plt.title('history of' + test_type, fontsize=16)
     plt.xlabel('Index', fontsize=14)
     plt.ylabel('Level', fontsize=14)
-    plt.xticks(np.arange(len(user_data)), labels=[f'{i}' for i in range(len(user_data))], rotation=45)
+
+    # 设置横轴刻度间隔
+    interval = 10  # 每隔10个点显示一个刻度标签
+    xticks_positions = np.arange(0, len(user_data), interval)
+    xticks_labels = [f'{i}' for i in xticks_positions]
+    plt.xticks(xticks_positions, labels=xticks_labels, rotation=45)
+
     plt.yticks(fontsize=12)
     sns.despine(left=True)
     plt.grid(axis='y', linestyle='--', alpha=0.7)
