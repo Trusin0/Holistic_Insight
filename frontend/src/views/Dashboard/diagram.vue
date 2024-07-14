@@ -6,7 +6,7 @@
       <img :src="average_url" alt="Average Plot" v-if="average_url">
     </div>
     <div class="chart-container">
-      <h1>History Vs Me</h1>
+      <h1>History</h1>
       <!-- 图表显示 -->
       <img :src="history_url" alt="History Plot" v-if="history_url">
     </div>
@@ -26,7 +26,7 @@ export default {
     },
     history_url() {
       return `http://localhost:8000/api/plots/${this.testName}/${this.userId}/`;
-    }
+    },
   },
   props: {
     testName: {

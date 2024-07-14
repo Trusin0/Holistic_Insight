@@ -462,7 +462,10 @@ def show_average(request, test_type, user_id):
     # 创建图表
     plt.figure(figsize=(14, 6))
     sns.kdeplot(average_data, bw_adjust=0.5, color='lightblue', fill=True, label='Average users', linewidth=1)
-    sns.kdeplot(usr_data, bw_adjust=0.5, color='blue', fill=True, label='alica', linewidth=2)
+    # sns.kdeplot(usr_data, bw_adjust=0.5, color='blue', fill=True, label='alica', linewidth=2)
+
+    sns.kdeplot(usr_data, bw_adjust=0.5, color='blue', fill=True, label='User Data', linewidth=2)
+    plt.xticks(np.arange(len(usr_data)), labels=[f'{i}' for i in range(len(usr_data))], rotation=45)
 
     # print('Check Point 2.')
 
@@ -505,7 +508,6 @@ def show_history(request, test_type, user_id):
     plt.fill_between(np.arange(len(user_data)), user_data, color='lightblue', alpha=0.5)
 
     # 添加图例和标题
-    plt.legend(loc='upper right')
     plt.title('Recent Sequence Memory Results', fontsize=16)
     plt.xlabel('Index', fontsize=14)
     plt.ylabel('Level', fontsize=14)
