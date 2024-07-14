@@ -47,7 +47,7 @@ export default new Router({
     },
     {
       path: '/Dashboard',
-      component: () => import(`@/views/Dashboard/Index.vue`)
+      component: () => import(`@/views/Dashboard/TestDashboard.vue`)
     },
     {
       path: '/data/:testName',

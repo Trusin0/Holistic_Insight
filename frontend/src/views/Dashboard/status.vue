@@ -12,7 +12,7 @@
       </div>
     </div>
   </template>
-  
+
   <script>
   export default {
     props: {
@@ -33,7 +33,7 @@
     },
     methods: {
       fetchData() {
-        fetch(`http://localhost:5000/api/${this.testName}`)
+        fetch(`http://localhost:8000/api/${this.testName}`)
           .then(response => response.json())
           .then(data => {
             this.data.points = data.points;
@@ -41,7 +41,7 @@
           });
       },
       fetchPlot() {
-        this.plotUrl = `http://localhost:5000/plot/${this.testName}`;
+        this.plotUrl = `http://localhost:8000/plot/${this.testName}`;
       },
       play() {
         window.location.href = `/play/${this.testName}`;
@@ -56,27 +56,27 @@
     }
   }
   </script>
-  
+
   <style scoped>
   .sequence-memory {
     font-family: Arial, sans-serif;
   }
-  
+
   .score {
     text-align: center;
     margin-bottom: 20px;
   }
-  
+
   .score h2 {
     margin: 0;
     font-size: 2em;
   }
-  
+
   .score p {
     margin: 5px 0;
     font-size: 1.5em;
   }
-  
+
   .play-button {
     color: white;
     background-color: #3498db;
@@ -85,20 +85,19 @@
     text-decoration: none;
     cursor: pointer;
   }
-  
+
   .charts {
     margin-top: 20px;
   }
-  
+
   .charts h3 {
     text-align: center;
     margin: 20px 0;
   }
-  
+
   .charts img {
     display: block;
     margin: 0 auto;
     max-width: 100%;
   }
   </style>
-  

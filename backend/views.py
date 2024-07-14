@@ -431,10 +431,14 @@ def show_average(request, test_type, user_id):
     usr_data = np.random.normal(loc=250, scale=20, size=100)
     average_data = np.random.normal(loc=250, scale=50, size=1000)
 
+    # print('Check Point 1.')
+
     # 创建图表
     plt.figure(figsize=(14, 6))
     sns.kdeplot(average_data, bw_adjust=0.5, color='lightblue', fill=True, label='Average users', linewidth=1)
     sns.kdeplot(usr_data, bw_adjust=0.5, color='blue', fill=True, label='alica', linewidth=2)
+
+    # print('Check Point 2.')
 
     plt.legend(loc='upper right')
     plt.title('Reaction Time Statistics', fontsize=16)
@@ -444,7 +448,9 @@ def show_average(request, test_type, user_id):
     plt.yticks(fontsize=12)
     sns.despine(left=True)
     plt.grid(axis='x', linestyle='--', alpha=0.7)
-    plt.tight_layout()
+    # plt.tight_layout()
+
+    # print('Check Point 3.')
 
     # 将图表保存到内存中
     buf = io.BytesIO()
@@ -452,20 +458,24 @@ def show_average(request, test_type, user_id):
     plt.close()
     buf.seek(0)
 
+    # print('Check Point 4.')
+
     return HttpResponse(buf.getvalue(), content_type='image/png')
 
 
 def show_history(request, test_type, user_id):
     # # 检索用户
-    # user = models.get_object_or_404(models.Usr, pk=user_id)
+    user = models.get_object_or_404(models.Usr, pk=user_id)
     
     # # 获取反应时间数据
-    # user_data, average_data = get_data(user_id, test_type)
+    user_data, average_data = get_data(user_id, test_type)
 
-    user_data = np.random.normal(loc=250, scale=20, size=100)
+    # user_data = np.random.normal(loc=250, scale=20, size=100)
     # 创建图表
     plt.figure(figsize=(14, 6))
     sns.lineplot(x=np.arange(len(user_data)), y=user_data, marker='o', color='blue', label='Level')
+
+    # print('Check Point 1.')
 
     # 填充区域
     plt.fill_between(np.arange(len(user_data)), user_data, color='lightblue', alpha=0.5)
@@ -476,22 +486,28 @@ def show_history(request, test_type, user_id):
     plt.xlabel('Index', fontsize=14)
     plt.ylabel('Level', fontsize=14)
 
+
+
     # 设置 x 轴刻度
     plt.xticks(np.arange(len(user_data)), labels=[f'{i}' for i in range(len(user_data))], rotation=45)
     plt.yticks(fontsize=12)
     plt.xticks(fontsize=12)
 
+
     # 美化图表
     sns.despine(left=True)
     plt.grid(axis='y', linestyle='--', alpha=0.7)
-
+    # print('Check Point 2.')
     # 显示图表
-    plt.tight_layout()
+    # plt.tight_layout()
 
+    # print('Check Point 3.')
     # 将图表保存到内存中
     buf = io.BytesIO()
     plt.savefig(buf, format='png')
     plt.close()
     buf.seek(0)
+
+    # print('Check Point 4.')
 
     return HttpResponse(buf.getvalue(), content_type='image/png')

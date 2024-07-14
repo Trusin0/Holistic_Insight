@@ -20,11 +20,11 @@
       </table>
     </div>
   </template>
-  
+
   <script>
   import TestRow from './TestRow.vue';
   import UserProfile from './UserProfile.vue';
-  
+
   export default {
     components: {
       TestRow,
@@ -33,7 +33,7 @@
     data() {
       return {
         user: {
-          username: 'alicaHKG41',
+          username: this.$store.state.userInfo.username,
           joined: '23 hours ago',
           permalink: '#'
         },
@@ -50,28 +50,27 @@
     }
   }
   </script>
-  
+
   <style scoped>
   .dashboard {
     margin: 20px;
     font-family: Arial, sans-serif;
   }
-  
+
   .test-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 16px;
   }
-  
+
   .test-table th, .test-table td {
     padding: 8px;
     text-align: left;
     border-bottom: 1px solid #ddd;
   }
-  
+
   .test-table th {
     background-color: #f2f2f2;
     text-align: center;
   }
   </style>
-  

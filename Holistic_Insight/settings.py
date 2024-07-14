@@ -89,9 +89,9 @@ WSGI_APPLICATION = 'Holistic_Insight.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'software',
+        'NAME': 'holistic_insight',
         'USER': 'root',
-        'PASSWORD': '105306663',
+        'PASSWORD': 'ss123456',
         'HOST': 'localhost',
         'PORT': '3306',
     }
