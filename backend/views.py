@@ -448,12 +448,8 @@ def get_data(user_id, test_type):
 
 def show_average(request, test_type, user_id):
 
-    # # 获取反应时间数据
-    # usr_data, average_data = get_data(user_id, test_type)
-
-    # 模拟数据生成
-    usr_data = np.random.normal(loc=250, scale=20, size=100)
-    average_data = np.random.normal(loc=250, scale=50, size=1000)
+    # 获取反应时间数据
+    usr_data, average_data = get_data(user_id, test_type)
 
     # 创建图表
     plt.figure(figsize=(10, 5))
@@ -479,9 +475,9 @@ def show_average(request, test_type, user_id):
 
 
 def show_history(request, test_type, user_id):
-    # 生成模拟数据
-    user_data = np.random.normal(loc=250, scale=20, size=100)
 
+
+    user_data, average_data = get_data(user_id, test_type)
     plt.figure(figsize=(10, 5))
     sns.lineplot(x=np.arange(len(user_data)), y=user_data, marker='o', color='blue', label='Level')
 
